@@ -29,65 +29,6 @@ target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.
 # once all of these have been used, all of the previous working cards (except the two on top)
 # are shuffled and used to draw from once more
 
-# import pygame
-# # Margins
-# margin_left = 250
-# margin_top = 150
-#
-# # window size
-# width = 800
-# height = 600
-#
-# # colors
-# black = (0, 0, 0)
-# white = (255, 255, 255)
-# gray = (110, 110, 110)
-# green = (0, 255, 0)
-# red = (255, 0, 0)
-# blue = (0, 0, 255)
-#
-# # initialize PyGame
-# pygame.init()
-# # set up screen/background
-# screen = pygame.display.set_mode((width, height))
-# screen.fill(gray)
-# # caption/title
-# pygame.display.set_caption("Speed!")
-#
-# # load card image for preview
-# back_of_card = pygame.image.load('gray_back.png')
-# # scale image
-# back_of_card = pygame.transform.scale(back_of_card, (100, 150))
-#import pygame
-# Margins
-margin_left = 250
-margin_top = 150
-
-# window size
-width = 800
-height = 600
-
-# colors
-black = (0, 0, 0)
-white = (255, 255, 255)
-gray = (110, 110, 110)
-green = (0, 255, 0)
-red = (255, 0, 0)
-blue = (0, 0, 255)
-
-# initialize PyGame
-#pygame.init()
-# set up screen/background
-#screen = pygame.display.set_mode((width, height))
-#screen.fill(gray)
-# caption/title
-#pygame.display.set_caption("Speed!")
-
-# load card image for preview
-#back_of_card = pygame.image.load('gray_back.png')
-# scale image
-#back_of_card = pygame.transform.scale(back_of_card, (100, 150))
-
 import random 
 # creates Card class
 class Card:
