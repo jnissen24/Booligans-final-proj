@@ -29,35 +29,35 @@ target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.
 # once all of these have been used, all of the previous working cards (except the two on top)
 # are shuffled and used to draw from once more
 
-import pygame
-# Margins
-margin_left = 250
-margin_top = 150
-
-# window size
-width = 800
-height = 600
-
-# colors
-black = (0, 0, 0)
-white = (255, 255, 255)
-gray = (110, 110, 110)
-green = (0, 255, 0)
-red = (255, 0, 0)
-blue = (0, 0, 255)
-
-# initialize PyGame
-pygame.init()
-# set up screen/background
-screen = pygame.display.set_mode((width, height))
-screen.fill(gray)
-# caption/title
-pygame.display.set_caption("Speed!")
-
-# load card image for preview
-back_of_card = pygame.image.load('gray_back.png')
-# scale image
-back_of_card = pygame.transform.scale(back_of_card, (100, 150))
+# import pygame
+# # Margins
+# margin_left = 250
+# margin_top = 150
+#
+# # window size
+# width = 800
+# height = 600
+#
+# # colors
+# black = (0, 0, 0)
+# white = (255, 255, 255)
+# gray = (110, 110, 110)
+# green = (0, 255, 0)
+# red = (255, 0, 0)
+# blue = (0, 0, 255)
+#
+# # initialize PyGame
+# pygame.init()
+# # set up screen/background
+# screen = pygame.display.set_mode((width, height))
+# screen.fill(gray)
+# # caption/title
+# pygame.display.set_caption("Speed!")
+#
+# # load card image for preview
+# back_of_card = pygame.image.load('gray_back.png')
+# # scale image
+# back_of_card = pygame.transform.scale(back_of_card, (100, 150))
 
 import random 
 # creates Card class
@@ -115,5 +115,17 @@ class Deck:
 deck = Deck()
 # print statement for wrkcard since only has one object
 print(deck.wrkcard1.show())
+print(deck.wrkcard2.show())
 # print statement for all other piles
-print([x.show() for x in deck.standby1])
+print([x.show() for x in deck.computer_cards])
+print([x.show() for x in deck.player_cards])
+
+# take first 5 cards of each player's stack to be in active hand
+computer_hand = []
+player_hand = []
+for i in range(0, 5):
+  computer_hand.append(deck.computer_cards[i])
+  player_hand.append(deck.computer_cards[i])
+
+print([x.show() for x in computer_hand])
+print([x.show() for x in player_hand])
