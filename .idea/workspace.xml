@@ -3,7 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="57f69a0c-075b-4f8c-9749-557919f362fa" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/speed_display.py" beforeDir="false" afterPath="$PROJECT_DIR$/speed_display.py" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/speeeed.py" beforeDir="false" afterPath="$PROJECT_DIR$/speeeed.py" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,7 +35,11 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+<<<<<<< Updated upstream
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+=======
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+>>>>>>> Stashed changes
   </component>
   <component name="RunManager">
     <configuration name="speed_display" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
@@ -67,7 +75,11 @@
       <updated>1617928152362</updated>
       <workItem from="1617928227420" duration="1107000" />
       <workItem from="1618183296941" duration="783000" />
+<<<<<<< Updated upstream
       <workItem from="1618265215563" duration="4823000" />
+=======
+      <workItem from="1618269397640" duration="1356000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>

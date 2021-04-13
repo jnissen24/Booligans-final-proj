@@ -99,3 +99,47 @@ for i in range(0, 5):
 
 print([x.show() for x in computer_hand])
 print([x.show() for x in player_hand])
+
+# loop for game play
+while 1:
+  for item in computer_hand:
+    if item == deck.wrkcard1 + 1 or deck.wrkcard1 - 1:
+      deck.wrkcard1.append(item)
+      deck.standby1.append(deck.wrkcard1[0])
+      deck.wrkcard1.pop(0)
+      computer_hand.append(deck.computer_cards[0])
+      deck.computer_cards.pop(0)
+    elif item == deck.wrkcard2 + 1 or deck.wrkcard2 - 1:
+      deck.wrkcard2.append(item)
+      deck.standby2.append(deck.wrkcard1[0])
+      deck.wrkcard2.pop(0)
+      computer_hand.append(deck.computer_cards[0])
+      deck.computer_cards.pop(0)
+    elif:
+      item is not last index, go to next item
+    else: #and other player cannot go
+      deck.wrkcard1.append(deck.standby1[0])
+      deck.wrkcard1.pop(0)
+      deck.wrkcard2.append(deck.standby2[0])
+      deck.standby2.pop(0)
+
+  for item in player_hand:
+    if item == deck.wrkcard1 + 1 or deck.wrkcard1 - 1:
+      deck.wrkcard1.append(item)
+      deck.standby1.append(deck.wrkcard1[0])
+      deck.wrkcard1.pop(0)
+      player_hand.append(deck.player_cards[0])
+      deck.player_cards.pop(0)
+    elif item == deck.wrkcard2 + 1 or deck.wrkcard2 - 1:
+      deck.wrkcard2.append(item)
+      deck.standby2.append(deck.wrkcard2[0])
+      deck.wrkcard2.pop(0)
+      player_hand.append(deck.player_cards[0])
+      deck.player_cards.pop(0)
+    elif:
+      item is not last index, go to next item
+    else: #and other
+      deck.wrkcard1.append(deck.standby1[0])
+      deck.wrkcard1.pop(0)
+      deck.wrkcard2.append(deck.standby2[0])
+      deck.standby2.pop(0)
