@@ -1,13 +1,62 @@
 import pygame
+import random
+
+# creates Card class
+class Card:
+    def __init__(self, suit, val):
+        self.suit = suit
+        self.value = val
+
+    def show(self):
+        print("{}{}".format(self.value, self.suit))
+
+# creates Deck class
+class Deck:
+    def __init__(self):
+        self.cards = []
+        self.build()
+        self.computer_cards = []
+        self.player_cards = []
+        self.standby1 = []
+        self.standby2 = []
+        self.wrkcard1 = []
+        self.wrkcard2 = []
+        self.shuffle()
+        self.deal()
+
+    # assigns each card a suit and a value
+    # labels for cards now match labels of images
+    def build(self):
+        for ii in ["S", "C", "D", "H"]:
+            for jj in ["A", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]:
+                self.cards.append(Card(ii, jj))
+
+    # Shuffles the deck by switching the card at index ii with a card at a random index
+    def shuffle(self):
+        for ii in range(len(self.cards)):
+            r = random.randint(0, ii)
+            self.cards[ii], self.cards[r] = self.cards[r], self.cards[ii]
+
+    # Display the shuffled deck
+    def show(self):
+        for c in self.cards:
+            c.show()
+
+    # Deals cards to player and computer and also sets up standby decks and the middle cards
+    def deal(self):
+        self.computer_cards = self.cards[:20]
+        self.player_cards = self.cards[20:40]
+        self.standby1 = self.cards[40:45]
+        self.standby2 = self.cards[45:50]
+        self.wrkcard1 = self.cards[50]
+        self.wrkcard2 = self.cards[51]
 
 # Margins
 margin_left = 250
 margin_top = 150
-
 # window size
 width = 1000
 height = 700
-
 # colors
 black = (0, 0, 0)
 white = (255, 255, 255)
