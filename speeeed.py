@@ -99,46 +99,46 @@ print([x.show() for x in computer_hand])
 print([x.show() for x in player_hand])
 
 # function to obtain value of individual card
-def cardvalue():
-  if 'AD' or 'AC' or 'AH' or 'AS':
-    cardvalue = 1
-  elif '2D' or '2C' or '2H' or '2S':
-    cardvalue = 2
-  elif '3D' or '3C' or '3H' or '3S':
-    cardvalue = 3
-  elif '4D' or '4C' or '4H' or '4S':
-    cardvalue = 4
-  elif '5D' or '5C' or '5H' or '5S':
-    cardvalue = 5
-  elif '6D' or '6C' or '6H' or '6S':
-    cardvalue = 6
-  elif '7D' or '7C' or '7H' or '7S':
-    cardvalue = 7
-  elif '8D' or '8C' or '8H' or '8S':
-    cardvalue = 8
-  elif '9D' or '9C' or '9H' or '9S':
-    cardvalue = 9
-  elif c = '10D' or '10C' or '10H' or '10S':
-    cardvalue = 10
-  elif 'JD' or 'JC' or 'JH' or 'JS':
-    cardvalue = 11
-  elif 'QD' or 'QC' or 'QH' or 'QS':
-    cardvalue = 12
-  elif 'KD' or 'KC' or 'KH' or 'KS':
-    cardvalue = 13
+def card_value():
+  if "AD" or "AC" or "AH" or "AS":
+    value = 1
+  elif "2D" or "2C" or "2H" or "2S":
+    value = 2
+  elif "3D" or "3C" or "3H" or "3S":
+    value = 3
+  elif "4D" or "4C" or "4H" or "4S":
+    value = 4
+  elif "5D" or "5C" or "5H" or "5S":
+    value = 5
+  elif "6D" or "6C" or "6H" or "6S":
+    value = 6
+  elif "7D" or "7C" or "7H" or "7S":
+    value = 7
+  elif "8D" or "8C" or "8H" or "8S":
+    value = 8
+  elif "9D" or "9C" or "9H" or "9S":
+    value = 9
+  elif "10D" or "10C" or "10H" or "10S":
+    value = 10
+  elif "JD" or "JC" or "JH" or "JS":
+    value = 11
+  elif "QD" or "QC" or "QH" or "QS":
+    value = 12
+  elif "KD" or "KC" or "KH" or "KS":
+    value = 13
   else:
-    cardvalue = 0
+    value = 0
 
 # loop for game play
 while 1:
   for item in computer_hand:
-    if item == deck.wrkcard1 + 1 or deck.wrkcard1 - 1:
+    if item == deck.wrkcard1[0] + 1 or deck.wrkcard1[0] - 1:
       deck.wrkcard1.append(item)
       deck.standby1.append(deck.wrkcard1[0])
       deck.wrkcard1.pop(0)
       computer_hand.append(deck.computer_cards[0])
       deck.computer_cards.pop(0)
-    elif item == deck.wrkcard2 + 1 or deck.wrkcard2 - 1:
+    elif item == deck.wrkcard2[0] + 1 or deck.wrkcard2[0] - 1:
       deck.wrkcard2.append(item)
       deck.standby2.append(deck.wrkcard1[0])
       deck.wrkcard2.pop(0)
