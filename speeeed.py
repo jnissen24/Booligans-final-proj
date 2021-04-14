@@ -39,7 +39,6 @@ class Card:
   def show(self):
     print("{}{}".format(self.value, self.suit))
 
-
 # creates Deck class
 class Deck:
   def __init__(self):
@@ -79,8 +78,7 @@ class Deck:
     self.standby1 = self.cards[40:45]
     self.standby2 = self.cards[45:50]
     self.wrkcard1 = self.cards[50]
-    self.wrkcard2 = self.cards[51] 
-    
+    self.wrkcard2 = self.cards[51]
 
 deck = Deck()
 # print statement for wrkcard since only has one object
@@ -99,6 +97,37 @@ for i in range(0, 5):
 
 print([x.show() for x in computer_hand])
 print([x.show() for x in player_hand])
+
+# function to obtain value of individual card
+def cardvalue():
+  if 'AD' or 'AC' or 'AH' or 'AS':
+    cardvalue = 1
+  elif '2D' or '2C' or '2H' or '2S':
+    cardvalue = 2
+  elif '3D' or '3C' or '3H' or '3S':
+    cardvalue = 3
+  elif '4D' or '4C' or '4H' or '4S':
+    cardvalue = 4
+  elif '5D' or '5C' or '5H' or '5S':
+    cardvalue = 5
+  elif '6D' or '6C' or '6H' or '6S':
+    cardvalue = 6
+  elif '7D' or '7C' or '7H' or '7S':
+    cardvalue = 7
+  elif '8D' or '8C' or '8H' or '8S':
+    cardvalue = 8
+  elif '9D' or '9C' or '9H' or '9S':
+    cardvalue = 9
+  elif c = '10D' or '10C' or '10H' or '10S':
+    cardvalue = 10
+  elif 'JD' or 'JC' or 'JH' or 'JS':
+    cardvalue = 11
+  elif 'QD' or 'QC' or 'QH' or 'QS':
+    cardvalue = 12
+  elif 'KD' or 'KC' or 'KH' or 'KS':
+    cardvalue = 13
+  else:
+    cardvalue = 0
 
 # loop for game play
 while 1:
