@@ -136,18 +136,19 @@ while 1:
     count = count + 1
     length_comp = len(computer_hand)
     print(item)
-    if item == deck.wrkcard1[0] + 1 or deck.wrkcard1[0] - 1:
-      deck.wrkcard1.append(item)
-      deck.standby1.append(deck.wrkcard1[0]) #keeps deck.wrkcard1 at holding one thing
-      deck.wrkcard1.pop(0) #gets rid of the card?
-      computer_hand.append(deck.computer_cards[0])
-      deck.computer_cards.pop(0)
-    elif item == deck.wrkcard2[0] + 1 or deck.wrkcard2[0] - 1:
-      deck.wrkcard2.append(item)
-      deck.standby2.append(deck.wrkcard1[0])
-      deck.wrkcard2.pop(0)
-      computer_hand.append(deck.computer_cards[0])
-      deck.computer_cards.pop(0)
+    if (item == deck.wrkcard1[0] + 1 or deck.wrkcard1[0] - 1) or (item == deck.wrkcard2[0] + 1 or deck.wrkcard2[0] - 1):
+        if (item == deck.wrkcard1[0] + 1 or deck.wrkcard1[0] - 1):
+          deck.wrkcard1.append(item)
+          deck.standby1.append(deck.wrkcard1[0]) #keeps deck.wrkcard1 at holding one thing
+          deck.wrkcard1.pop(0) #gets rid of the card?
+          computer_hand.append(deck.computer_cards[0])
+          deck.computer_cards.pop(0)
+        elif item == deck.wrkcard2[0] + 1 or deck.wrkcard2[0] - 1:
+          deck.wrkcard2.append(item)
+          deck.standby2.append(deck.wrkcard1[0])
+          deck.wrkcard2.pop(0)
+          computer_hand.append(deck.computer_cards[0])
+          deck.computer_cards.pop(0)
     elif count == length_comp:
       count = 0
       deck.wrkcard1.append(deck.standby1[0])

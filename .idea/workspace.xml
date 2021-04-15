@@ -4,7 +4,6 @@
     <list default="true" id="57f69a0c-075b-4f8c-9749-557919f362fa" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/speeeed.py" beforeDir="false" afterPath="$PROJECT_DIR$/speeeed.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,8 +69,12 @@
       <workItem from="1618183296941" duration="783000" />
       <workItem from="1618265215563" duration="5940000" />
       <workItem from="1618273234746" duration="1585000" />
+<<<<<<< Updated upstream
       <workItem from="1618430861527" duration="2941000" />
       <workItem from="1618522365309" duration="4185000" />
+=======
+      <workItem from="1618430861527" duration="3233000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
