@@ -136,14 +136,14 @@ while 1:
     count = count + 1
     length_comp = len(computer_hand)
     print(item)
-    if (item == deck.wrkcard1[0] + 1 or deck.wrkcard1[0] - 1) or (item == deck.wrkcard2[0] + 1 or deck.wrkcard2[0] - 1):
-        if (item == deck.wrkcard1[0] + 1 or deck.wrkcard1[0] - 1):
+    if (item == (card_value(deck.wrkcard1[0]) + 1) or (card_value(deck.wrkcard1[0]) - 1)) or (item == card_value(deck.wrkcard2[0]) + 1 or card_value(deck.wrkcard2[0]) - 1):
+        if (item == (card_value(deck.wrkcard1[0]) + 1) or (card_value(deck.wrkcard1[0]) - 1)):
           deck.wrkcard1.append(item)
           deck.standby1.append(deck.wrkcard1[0]) #keeps deck.wrkcard1 at holding one thing
           deck.wrkcard1.pop(0) #gets rid of the card?
           computer_hand.append(deck.computer_cards[0])
           deck.computer_cards.pop(0)
-        elif item == deck.wrkcard2[0] + 1 or deck.wrkcard2[0] - 1:
+        elif item == (card_value(deck.wrkcard2[0]) + 1 or card_value(deck.wrkcard2[0]) - 1):
           deck.wrkcard2.append(item)
           deck.standby2.append(deck.wrkcard1[0])
           deck.wrkcard2.pop(0)
@@ -155,26 +155,28 @@ while 1:
       deck.wrkcard1.pop(0)
       deck.wrkcard2.append(deck.standby2[0])
       deck.standby2.pop(0)
-    # need a case for when there are no more cards to be compared!
+    else:
+      if len(deck.computer_cards) and len(deck.computer_hand) == 0:
+        print('Computer has won the game!')
 
-  for item in player_hand:
-    count_player = count_player + 1
-    length_player = len(player_hand)
-    if item == deck.wrkcard1 + 1 or deck.wrkcard1 - 1:
-      deck.wrkcard1.append(item)
-      deck.standby1.append(deck.wrkcard1[0])
-      deck.wrkcard1.pop(0)
-      player_hand.append(deck.player_cards[0])
-      deck.player_cards.pop(0)
-    elif item == deck.wrkcard2 + 1 or deck.wrkcard2 - 1:
-      deck.wrkcard2.append(item)
-      deck.standby2.append(deck.wrkcard2[0])
-      deck.wrkcard2.pop(0)
-      player_hand.append(deck.player_cards[0])
-      deck.player_cards.pop(0)
-    elif count_player == length_player:
-      count = 0
-      deck.wrkcard1.append(deck.standby1[0])
-      deck.wrkcard1.pop(0)
-      deck.wrkcard2.append(deck.standby2[0])
-      deck.standby2.pop(0)
+  # for item in player_hand:
+  #   count_player = count_player + 1
+  #   length_player = len(player_hand)
+  #   if item == deck.wrkcard1 + 1 or deck.wrkcard1 - 1:
+  #     deck.wrkcard1.append(item)
+  #     deck.standby1.append(deck.wrkcard1[0])
+  #     deck.wrkcard1.pop(0)
+  #     player_hand.append(deck.player_cards[0])
+  #     deck.player_cards.pop(0)
+  #   elif item == deck.wrkcard2 + 1 or deck.wrkcard2 - 1:
+  #     deck.wrkcard2.append(item)
+  #     deck.standby2.append(deck.wrkcard2[0])
+  #     deck.wrkcard2.pop(0)
+  #     player_hand.append(deck.player_cards[0])
+  #     deck.player_cards.pop(0)
+  #   elif count_player == length_player:
+  #     count = 0
+  #     deck.wrkcard1.append(deck.standby1[0])
+  #     deck.wrkcard1.pop(0)
+  #     deck.wrkcard2.append(deck.standby2[0])
+  #     deck.standby2.pop(0)
