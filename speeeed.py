@@ -57,7 +57,7 @@ class Deck:
 # labels for cards now match labels of images
   def build(self): 
     for ii in ["S", "C", "D", "H"]:
-      for jj in ["A", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]:
+      for jj in ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]:
         self.cards.append(Card(ii, jj))
   
 # Shuffles the deck by switching the card at index ii with a card at a random index
@@ -99,45 +99,130 @@ print([x.show() for x in computer_hand])
 print([x.show() for x in player_hand])
 
 # function to obtain value of individual card
-def card_value():
-  if "AD" or "AC" or "AH" or "AS":
+def card_value(card):
+  if card == "AD":
     value = 1
-  elif "2D" or "2C" or "2H" or "2S":
+  elif card == "AC":
+    value = 1
+  elif card == "AH":
+    value = 1
+  elif card == "AS":
+    value = 1
+  elif card == "2D":
     value = 2
-  elif "3D" or "3C" or "3H" or "3S":
+  elif card == "2C":
+    value = 2
+  elif card == "2H":
+    value = 2
+  elif card == "2S":
+    value = 2
+  elif card == "3D":
     value = 3
-  elif "4D" or "4C" or "4H" or "4S":
+  elif card == "3C":
+    value = 3
+  elif card == "3H":
+    value = 3
+  elif card == "3S":
+    value = 3
+  elif card == "4D":
     value = 4
-  elif "5D" or "5C" or "5H" or "5S":
+  elif card == "4C":
+    value = 4
+  elif card == "4H":
+    value = 4
+  elif card == "4S":
+    value = 4
+  elif card == "5D":
     value = 5
-  elif "6D" or "6C" or "6H" or "6S":
+  elif card == "5C":
+    value = 5
+  elif card == "5H":
+    value = 5
+  elif card == "5S":
+    value = 5
+  elif card == "6D":
     value = 6
-  elif "7D" or "7C" or "7H" or "7S":
+  elif card == "6C":
+    value = 6
+  elif card == "6H":
+    value = 6
+  elif card == "6S":
+    value = 6
+  elif card == "7D":
     value = 7
-  elif "8D" or "8C" or "8H" or "8S":
+  elif card == "7C":
+    value = 7
+  elif card == "7H":
+    value = 7
+  elif card == "7S":
+    value = 7
+  elif card == "8D":
     value = 8
-  elif "9D" or "9C" or "9H" or "9S":
+  elif card == "8C":
+    value = 8
+  elif card == "8H":
+    value = 8
+  elif card == "8S":
+    value = 8
+  elif card == "9D":
     value = 9
-  elif "10D" or "10C" or "10H" or "10S":
+  elif card == "9C":
+    value = 9
+  elif card == "9H":
+    value = 9
+  elif card == "9S":
+    value = 9
+  elif card == "10D":
     value = 10
-  elif "JD" or "JC" or "JH" or "JS":
+  elif card == "10C":
+    value = 10
+  elif card == "10H":
+    value = 10
+  elif card == "10S":
+    value = 10
+  elif card == "JD":
     value = 11
-  elif "QD" or "QC" or "QH" or "QS":
+  elif card == "JC":
+    value = 11
+  elif card == "JH":
+    value = 11
+  elif card == "JS":
+    value = 11
+  elif card == "QD":
     value = 12
-  elif "KD" or "KC" or "KH" or "KS":
+  elif card == "QC":
+    value = 12
+  elif card == "QH":
+    value = 12
+  elif card == "QS":
+    value = 12
+  elif card == "KD":
+    value = 13
+  elif card == "KC":
+    value = 13
+  elif card == "KH":
+    value = 13
+  elif card == "KS":
     value = 13
   else:
     value = 0
+  return value
 # loop for game play
+
+print(card_value("KC"))
+
+
+
 while 1:
   count = 0
   count_player = 0
   for item in computer_hand:
     count = count + 1
     length_comp = len(computer_hand)
-    print(item)
+    print(card_value(item.show()))
     if (item == (card_value(deck.wrkcard1[0]) + 1) or (card_value(deck.wrkcard1[0]) - 1)) or (item == card_value(deck.wrkcard2[0]) + 1 or card_value(deck.wrkcard2[0]) - 1):
         if (item == (card_value(deck.wrkcard1[0]) + 1) or (card_value(deck.wrkcard1[0]) - 1)):
+
           deck.wrkcard1.append(item)
           deck.standby1.append(deck.wrkcard1[0]) #keeps deck.wrkcard1 at holding one thing
           deck.wrkcard1.pop(0) #gets rid of the card?
