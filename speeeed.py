@@ -93,7 +93,7 @@ computer_hand = []
 player_hand = []
 for i in range(0, 5):
   computer_hand.append(deck.computer_cards[i])
-  player_hand.append(deck.computer_cards[i])
+  player_hand.append(deck.player_cards[i]) #this used to be deck.computer_cards but should be this maybe?
 
 print([x.show() for x in computer_hand])
 print([x.show() for x in player_hand])
@@ -128,14 +128,18 @@ def card_value():
     value = 13
   else:
     value = 0
-
 # loop for game play
 while 1:
+  count = 0
+  count_player = 0
   for item in computer_hand:
+    count = count + 1
+    length_comp = len(computer_hand)
+    print(item)
     if item == deck.wrkcard1[0] + 1 or deck.wrkcard1[0] - 1:
       deck.wrkcard1.append(item)
-      deck.standby1.append(deck.wrkcard1[0])
-      deck.wrkcard1.pop(0)
+      deck.standby1.append(deck.wrkcard1[0]) #keeps deck.wrkcard1 at holding one thing
+      deck.wrkcard1.pop(0) #gets rid of the card?
       computer_hand.append(deck.computer_cards[0])
       deck.computer_cards.pop(0)
     elif item == deck.wrkcard2[0] + 1 or deck.wrkcard2[0] - 1:
@@ -144,15 +148,17 @@ while 1:
       deck.wrkcard2.pop(0)
       computer_hand.append(deck.computer_cards[0])
       deck.computer_cards.pop(0)
-    elif:
-      item is not last index, go to next item
-    else: #and other player cannot go
+    elif count == length_comp:
+      count = 0
       deck.wrkcard1.append(deck.standby1[0])
       deck.wrkcard1.pop(0)
       deck.wrkcard2.append(deck.standby2[0])
       deck.standby2.pop(0)
+    # need a case for when there are no more cards to be compared!
 
   for item in player_hand:
+    count_player = count_player + 1
+    length_player = len(player_hand)
     if item == deck.wrkcard1 + 1 or deck.wrkcard1 - 1:
       deck.wrkcard1.append(item)
       deck.standby1.append(deck.wrkcard1[0])
@@ -165,9 +171,8 @@ while 1:
       deck.wrkcard2.pop(0)
       player_hand.append(deck.player_cards[0])
       deck.player_cards.pop(0)
-    elif:
-      item is not last index, go to next item
-    else: #and other
+    elif count_player == length_player:
+      count = 0
       deck.wrkcard1.append(deck.standby1[0])
       deck.wrkcard1.pop(0)
       deck.wrkcard2.append(deck.standby2[0])
