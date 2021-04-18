@@ -29,239 +29,260 @@ target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.
 # once all of these have been used, all of the previous working cards (except the two on top)
 # are shuffled and used to draw from once more
 
-import random 
+import random
+
+
 # creates Card class
 class Card:
-  def __init__(self, suit, val):
-    self.suit = suit
-    self.value = val
+    def __init__(self, suit, val):
+        self.suit = suit
+        self.value = val
 
-  def show(self):
-    print("{}{}".format(self.value, self.suit))
+    def show(self):
+        print("{}{}".format(self.value, self.suit))
+
 
 # creates Deck class
 class Deck:
-  def __init__(self):
-    self.cards = []
-    self.build()
-    self.computer_cards = []
-    self.player_cards = []
-    self.standby1 = []
-    self.standby2 = []
-    self.wrkcard1 = []
-    self.wrkcard2 = []
-    self.shuffle()
-    self.deal()
-  
-# assigns each card a suit and a value
-# labels for cards now match labels of images
-  def build(self): 
-    for ii in ["S", "C", "D", "H"]:
-      for jj in ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]:
-        self.cards.append(Card(ii, jj))
-  
-# Shuffles the deck by switching the card at index ii with a card at a random index
-  def shuffle(self):
-    for ii in range(len(self.cards)):
-      r = random.randint(0, ii)
-      self.cards[ii], self.cards[r] = self.cards[r], self.cards[ii]
+    def __init__(self):
+        self.cards = []
+        self.build()
+        self.computer_cards = []
+        self.player_cards = []
+        self.standby1 = []
+        self.standby2 = []
+        self.wrkcard1 = []
+        self.wrkcard2 = []
+        self.shuffle()
+        self.deal()
 
-# Display the shuffled deck
-  def show(self):
-    for c in self.cards:
-      c.show()
+    # assigns each card a suit and a value
+    # labels for cards now match labels of images
+    def build(self):
+        for ii in ["S", "C", "D", "H"]:
+            for jj in range(1, 14):  # ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]:
+                self.cards.append(Card(ii, jj))
 
-# Deals cards to player and computer and also sets up standby decks and the middle cards
-  def deal(self):
-    self.computer_cards = self.cards[:20]
-    self.player_cards = self.cards[20:40]
-    self.standby1 = self.cards[40:45]
-    self.standby2 = self.cards[45:50]
-    self.wrkcard1 = self.cards[50]
-    self.wrkcard2 = self.cards[51]
+    # Shuffles the deck by switching the card at index ii with a card at a random index
+    def shuffle(self):
+        for ii in range(len(self.cards)):
+            r = random.randint(0, ii)
+            self.cards[ii], self.cards[r] = self.cards[r], self.cards[ii]
 
+    # Display the shuffled deck
+    def show(self):
+        for c in self.cards:
+            c.show()
+
+    # Deals cards to player and computer and also sets up standby decks and the middle cards
+    def deal(self):
+        self.computer_cards = self.cards[:20]
+        self.player_cards = self.cards[20:40]
+        self.standby1 = self.cards[40:45]
+        self.standby2 = self.cards[45:50]
+        self.wrkcard1 = self.cards[50]
+        self.wrkcard2 = self.cards[51]
+
+
+# function to obtain value of individual card
+def card_value(card):
+    if card == "AD":
+        value = 1
+    elif card == "AC":
+        value = 1
+    elif card == "AH":
+        value = 1
+    elif card == "AS":
+        value = 1
+    elif card == "2D":
+        value = 2
+    elif card == "2C":
+        value = 2
+    elif card == "2H":
+        value = 2
+    elif card == "2S":
+        value = 2
+    elif card == "3D":
+        value = 3
+    elif card == "3C":
+        value = 3
+    elif card == "3H":
+        value = 3
+    elif card == "3S":
+        value = 3
+    elif card == "4D":
+        value = 4
+    elif card == "4C":
+        value = 4
+    elif card == "4H":
+        value = 4
+    elif card == "4S":
+        value = 4
+    elif card == "5D":
+        value = 5
+    elif card == "5C":
+        value = 5
+    elif card == "5H":
+        value = 5
+    elif card == "5S":
+        value = 5
+    elif card == "6D":
+        value = 6
+    elif card == "6C":
+        value = 6
+    elif card == "6H":
+        value = 6
+    elif card == "6S":
+        value = 6
+    elif card == "7D":
+        value = 7
+    elif card == "7C":
+        value = 7
+    elif card == "7H":
+        value = 7
+    elif card == "7S":
+        value = 7
+    elif card == "8D":
+        value = 8
+    elif card == "8C":
+        value = 8
+    elif card == "8H":
+        value = 8
+    elif card == "8S":
+        value = 8
+    elif card == "9D":
+        value = 9
+    elif card == "9C":
+        value = 9
+    elif card == "9H":
+        value = 9
+    elif card == "9S":
+        value = 9
+    elif card == "10D":
+        value = 10
+    elif card == "10C":
+        value = 10
+    elif card == "10H":
+        value = 10
+    elif card == "10S":
+        value = 10
+    elif card == "JD":
+        value = 11
+    elif card == "JC":
+        value = 11
+    elif card == "JH":
+        value = 11
+    elif card == "JS":
+        value = 11
+    elif card == "QD":
+        value = 12
+    elif card == "QC":
+        value = 12
+    elif card == "QH":
+        value = 12
+    elif card == "QS":
+        value = 12
+    elif card == "KD":
+        value = 13
+    elif card == "KC":
+        value = 13
+    elif card == "KH":
+        value = 13
+    elif card == "KS":
+        value = 13
+    else:
+        value = 0
+    return value
+
+
+def displayStatus(deck):
+    print('Standby1 : ')
+    [x.show() for x in deck.standby1]
+
+    print('Standby2 : ')
+    [x.show() for x in deck.standby2]
+
+    print('Wrkcard1 : ')
+    deck.wrkcard1.show()
+
+    print('Wrkcard2 : ')
+    deck.wrkcard2.show()
+
+
+### ACTUAL GAME STARTS ###
 deck = Deck()
 # print statement for wrkcard since only has one object
-print(deck.wrkcard1.show())
-print(deck.wrkcard2.show())
+# print(deck.wrkcard1.show())
+# print(deck.wrkcard2.show())
 # print statement for all other piles
-print([x.show() for x in deck.computer_cards])
-print([x.show() for x in deck.player_cards])
+# print([x.show() for x in deck.computer_cards])
+# print([x.show() for x in deck.player_cards])
 
 # take first 5 cards of each player's stack to be in active hand
 computer_hand = []
 player_hand = []
 for i in range(0, 5):
-  computer_hand.append(deck.computer_cards[i])
-  player_hand.append(deck.player_cards[i]) #this used to be deck.computer_cards but should be this maybe?
+    computer_hand.append(deck.computer_cards[i])
+    player_hand.append(deck.player_cards[i])  # this used to be deck.computer_cards but should be this maybe?
 
-print([x.show() for x in computer_hand])
-print([x.show() for x in player_hand])
+# print([x.show() for x in computer_hand])
+# print([x.show() for x in player_hand])
 
-# function to obtain value of individual card
-def card_value(card):
-  if card == "AD":
-    value = 1
-  elif card == "AC":
-    value = 1
-  elif card == "AH":
-    value = 1
-  elif card == "AS":
-    value = 1
-  elif card == "2D":
-    value = 2
-  elif card == "2C":
-    value = 2
-  elif card == "2H":
-    value = 2
-  elif card == "2S":
-    value = 2
-  elif card == "3D":
-    value = 3
-  elif card == "3C":
-    value = 3
-  elif card == "3H":
-    value = 3
-  elif card == "3S":
-    value = 3
-  elif card == "4D":
-    value = 4
-  elif card == "4C":
-    value = 4
-  elif card == "4H":
-    value = 4
-  elif card == "4S":
-    value = 4
-  elif card == "5D":
-    value = 5
-  elif card == "5C":
-    value = 5
-  elif card == "5H":
-    value = 5
-  elif card == "5S":
-    value = 5
-  elif card == "6D":
-    value = 6
-  elif card == "6C":
-    value = 6
-  elif card == "6H":
-    value = 6
-  elif card == "6S":
-    value = 6
-  elif card == "7D":
-    value = 7
-  elif card == "7C":
-    value = 7
-  elif card == "7H":
-    value = 7
-  elif card == "7S":
-    value = 7
-  elif card == "8D":
-    value = 8
-  elif card == "8C":
-    value = 8
-  elif card == "8H":
-    value = 8
-  elif card == "8S":
-    value = 8
-  elif card == "9D":
-    value = 9
-  elif card == "9C":
-    value = 9
-  elif card == "9H":
-    value = 9
-  elif card == "9S":
-    value = 9
-  elif card == "10D":
-    value = 10
-  elif card == "10C":
-    value = 10
-  elif card == "10H":
-    value = 10
-  elif card == "10S":
-    value = 10
-  elif card == "JD":
-    value = 11
-  elif card == "JC":
-    value = 11
-  elif card == "JH":
-    value = 11
-  elif card == "JS":
-    value = 11
-  elif card == "QD":
-    value = 12
-  elif card == "QC":
-    value = 12
-  elif card == "QH":
-    value = 12
-  elif card == "QS":
-    value = 12
-  elif card == "KD":
-    value = 13
-  elif card == "KC":
-    value = 13
-  elif card == "KH":
-    value = 13
-  elif card == "KS":
-    value = 13
-  else:
-    value = 0
-  return value
 # loop for game play
 
-print(card_value("KC"))
+# print(card_value("KC"))
+# print("done")
 
+game_over = False
+while not game_over:
+    count = 0
+    count_player = 0
+    for item in computer_hand:
+        displayStatus(deck)
+        count = count + 1
+        length_comp = len(computer_hand)
 
+        if item == (deck.wrkcard1.value + 1) or item == (deck.wrkcard1.value - 1) or item == (
+                deck.wrkcard2.value + 1) or item == (deck.wrkcard2.value - 1):
+            if item == (deck.wrkcard1.value + 1) or item == (deck.wrkcard1.value - 1):
+                deck.standby1.append(deck.wrkcard1)  # keeps deck.wrkcard1 at holding one thing
+                deck.wrkcard1 = item
+                computer_hand.append(deck.computer_cards[0])
+                deck.computer_cards.pop(0)
+            elif item == (deck.wrkcard2.value + 1) or item == (deck.wrkcard2.value - 1):
+                deck.standby2.append(deck.wrkcard2)
+                deck.wrkcard2 = item
+                computer_hand.append(deck.computer_cards[0])
+                deck.computer_cards.pop(0)
+        elif count == length_comp:
+            count = 0
+            deck.wrkcard1 = deck.standby1[0]
+            deck.standby1.pop(0)
+            deck.wrkcard2 = deck.standby2[0]
+            deck.standby2.pop(0)
+        else:
+            if len(deck.computer_cards) == 0 and len(deck.computer_hand) == 0:
+                print('Computer has won the game!')
+                game_over = True
 
-while 1:
-  count = 0
-  count_player = 0
-  for item in computer_hand:
-    count = count + 1
-    length_comp = len(computer_hand)
-    print(card_value(item.show()))
-    if (item == (card_value(deck.wrkcard1[0]) + 1) or (card_value(deck.wrkcard1[0]) - 1)) or (item == card_value(deck.wrkcard2[0]) + 1 or card_value(deck.wrkcard2[0]) - 1):
-        if (item == (card_value(deck.wrkcard1[0]) + 1) or (card_value(deck.wrkcard1[0]) - 1)):
-
-          deck.wrkcard1.append(item)
-          deck.standby1.append(deck.wrkcard1[0]) #keeps deck.wrkcard1 at holding one thing
-          deck.wrkcard1.pop(0) #gets rid of the card?
-          computer_hand.append(deck.computer_cards[0])
-          deck.computer_cards.pop(0)
-        elif item == (card_value(deck.wrkcard2[0]) + 1 or card_value(deck.wrkcard2[0]) - 1):
-          deck.wrkcard2.append(item)
-          deck.standby2.append(deck.wrkcard1[0])
-          deck.wrkcard2.pop(0)
-          computer_hand.append(deck.computer_cards[0])
-          deck.computer_cards.pop(0)
-    elif count == length_comp:
-      count = 0
-      deck.wrkcard1.append(deck.standby1[0])
-      deck.wrkcard1.pop(0)
-      deck.wrkcard2.append(deck.standby2[0])
-      deck.standby2.pop(0)
-    else:
-      if len(deck.computer_cards) and len(deck.computer_hand) == 0:
-        print('Computer has won the game!')
-
-  # for item in player_hand:
-  #   count_player = count_player + 1
-  #   length_player = len(player_hand)
-  #   if item == deck.wrkcard1 + 1 or deck.wrkcard1 - 1:
-  #     deck.wrkcard1.append(item)
-  #     deck.standby1.append(deck.wrkcard1[0])
-  #     deck.wrkcard1.pop(0)
-  #     player_hand.append(deck.player_cards[0])
-  #     deck.player_cards.pop(0)
-  #   elif item == deck.wrkcard2 + 1 or deck.wrkcard2 - 1:
-  #     deck.wrkcard2.append(item)
-  #     deck.standby2.append(deck.wrkcard2[0])
-  #     deck.wrkcard2.pop(0)
-  #     player_hand.append(deck.player_cards[0])
-  #     deck.player_cards.pop(0)
-  #   elif count_player == length_player:
-  #     count = 0
-  #     deck.wrkcard1.append(deck.standby1[0])
-  #     deck.wrkcard1.pop(0)
-  #     deck.wrkcard2.append(deck.standby2[0])
-  #     deck.standby2.pop(0)
+    # for item in player_hand:
+    #   count_player = count_player + 1
+    #   length_player = len(player_hand)
+    #   if item == deck.wrkcard1 + 1 or deck.wrkcard1 - 1:
+    #     deck.wrkcard1.append(item)
+    #     deck.standby1.append(deck.wrkcard1[0])
+    #     deck.wrkcard1.pop(0)
+    #     player_hand.append(deck.player_cards[0])
+    #     deck.player_cards.pop(0)
+    #   elif item == deck.wrkcard2 + 1 or deck.wrkcard2 - 1:
+    #     deck.wrkcard2.append(item)
+    #     deck.standby2.append(deck.wrkcard2[0])
+    #     deck.wrkcard2.pop(0)
+    #     player_hand.append(deck.player_cards[0])
+    #     deck.player_cards.pop(0)
+    #   elif count_player == length_player:
+    #     count = 0
+    #     deck.wrkcard1.append(deck.standby1[0])
+    #     deck.wrkcard1.pop(0)
+    #     deck.wrkcard2.append(deck.standby2[0])
+    #     deck.standby2.pop(0)
