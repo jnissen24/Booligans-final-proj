@@ -1,6 +1,7 @@
 import pygame
 import random
 
+
 # creates Card class
 class Card:
     def __init__(self, suit, val):
@@ -9,6 +10,7 @@ class Card:
 
     def show(self):
         print("{}{}".format(self.value, self.suit))
+
 
 # creates Deck class
 class Deck:
@@ -28,7 +30,7 @@ class Deck:
     # labels for cards now match labels of images
     def build(self):
         for ii in ["S", "C", "D", "H"]:
-            for jj in ["A", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]:
+            for jj in ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]:
                 self.cards.append(Card(ii, jj))
 
     # Shuffles the deck by switching the card at index ii with a card at a random index
@@ -185,126 +187,121 @@ pygame.display.set_caption("Speed!")
 back_of_card = pygame.image.load('./Playing Cards/PNG-cards-1.3/gray_back.png')
 back_of_card = pygame.transform.scale(back_of_card, (100, 150))
 _AH = pygame.image.load('./Playing Cards/PNG-cards-1.3/AH.png')
-_AH = pygame.transform.scale(back_of_card, (100, 150))
+_AH = pygame.transform.scale(_AH, (100, 150))
 _AD = pygame.image.load('./Playing Cards/PNG-cards-1.3/AD.png')
-_AD = pygame.transform.scale(back_of_card, (100, 150))
+_AD = pygame.transform.scale(_AD, (100, 150))
 _AC = pygame.image.load('./Playing Cards/PNG-cards-1.3/AC.png')
-_AC = pygame.transform.scale(back_of_card, (100, 150))
+_AC = pygame.transform.scale(_AC, (100, 150))
 _AS = pygame.image.load('./Playing Cards/PNG-cards-1.3/AS.png')
-_AS = pygame.transform.scale(back_of_card, (100, 150))
+_AS = pygame.transform.scale(_AS, (100, 150))
 _2H = pygame.image.load('./Playing Cards/PNG-cards-1.3/2H.png')
-_2H = pygame.transform.scale(back_of_card, (100, 150))
+_2H = pygame.transform.scale(_2H, (100, 150))
 _2D = pygame.image.load('./Playing Cards/PNG-cards-1.3/2D.png')
-_2D = pygame.transform.scale(back_of_card, (100, 150))
+_2D = pygame.transform.scale(_2D, (100, 150))
 _2C = pygame.image.load('./Playing Cards/PNG-cards-1.3/2C.png')
-_2C = pygame.transform.scale(back_of_card, (100, 150))
+_2C = pygame.transform.scale(_2C, (100, 150))
 _2S = pygame.image.load('./Playing Cards/PNG-cards-1.3/2S.png')
-_2S = pygame.transform.scale(back_of_card, (100, 150))
+_2S = pygame.transform.scale(_2S, (100, 150))
 _3H = pygame.image.load('./Playing Cards/PNG-cards-1.3/3H.png')
-_3H = pygame.transform.scale(back_of_card, (100, 150))
+_3H = pygame.transform.scale(_3H, (100, 150))
 _3D = pygame.image.load('./Playing Cards/PNG-cards-1.3/3D.png')
-_3D = pygame.transform.scale(back_of_card, (100, 150))
+_3D = pygame.transform.scale(_3D, (100, 150))
 _3C = pygame.image.load('./Playing Cards/PNG-cards-1.3/3C.png')
-_3C = pygame.transform.scale(back_of_card, (100, 150))
+_3C = pygame.transform.scale(_3C, (100, 150))
 _3S = pygame.image.load('./Playing Cards/PNG-cards-1.3/3S.png')
-_3S = pygame.transform.scale(back_of_card, (100, 150))
+_3S = pygame.transform.scale(_3S, (100, 150))
 _4H = pygame.image.load('./Playing Cards/PNG-cards-1.3/4H.png')
-_4H = pygame.transform.scale(back_of_card, (100, 150))
+_4H = pygame.transform.scale(_4H, (100, 150))
 _4D = pygame.image.load('./Playing Cards/PNG-cards-1.3/4D.png')
-_4D = pygame.transform.scale(back_of_card, (100, 150))
+_4D = pygame.transform.scale(_4D, (100, 150))
 _4C = pygame.image.load('./Playing Cards/PNG-cards-1.3/4C.png')
-_4C = pygame.transform.scale(back_of_card, (100, 150))
+_4C = pygame.transform.scale(_4C, (100, 150))
 _4S = pygame.image.load('./Playing Cards/PNG-cards-1.3/4S.png')
-_4S = pygame.transform.scale(back_of_card, (100, 150))
+_4S = pygame.transform.scale(_4S, (100, 150))
 _5H = pygame.image.load('./Playing Cards/PNG-cards-1.3/5H.png')
-_5H = pygame.transform.scale(back_of_card, (100, 150))
+_5H = pygame.transform.scale(_5H, (100, 150))
 _5D = pygame.image.load('./Playing Cards/PNG-cards-1.3/5D.png')
-_5D = pygame.transform.scale(back_of_card, (100, 150))
+_5D = pygame.transform.scale(_5D, (100, 150))
 _5C = pygame.image.load('./Playing Cards/PNG-cards-1.3/5C.png')
-_5C = pygame.transform.scale(back_of_card, (100, 150))
+_5C = pygame.transform.scale(_5C, (100, 150))
 _5S = pygame.image.load('./Playing Cards/PNG-cards-1.3/5S.png')
-_5S = pygame.transform.scale(back_of_card, (100, 150))
+_5S = pygame.transform.scale(_5S, (100, 150))
 _6H = pygame.image.load('./Playing Cards/PNG-cards-1.3/6H.png')
-_6H = pygame.transform.scale(back_of_card, (100, 150))
+_6H = pygame.transform.scale(_6H, (100, 150))
 _6D = pygame.image.load('./Playing Cards/PNG-cards-1.3/6D.png')
-_6D = pygame.transform.scale(back_of_card, (100, 150))
+_6D = pygame.transform.scale(_6D, (100, 150))
 _6C = pygame.image.load('./Playing Cards/PNG-cards-1.3/6C.png')
-_6C = pygame.transform.scale(back_of_card, (100, 150))
+_6C = pygame.transform.scale(_6C, (100, 150))
 _6S = pygame.image.load('./Playing Cards/PNG-cards-1.3/6S.png')
-_6S = pygame.transform.scale(back_of_card, (100, 150))
+_6S = pygame.transform.scale(_6S, (100, 150))
 _7H = pygame.image.load('./Playing Cards/PNG-cards-1.3/7H.png')
-_7H = pygame.transform.scale(back_of_card, (100, 150))
+_7H = pygame.transform.scale(_7H, (100, 150))
 _7D = pygame.image.load('./Playing Cards/PNG-cards-1.3/7D.png')
-_7D = pygame.transform.scale(back_of_card, (100, 150))
+_7D = pygame.transform.scale(_7D, (100, 150))
 _7C = pygame.image.load('./Playing Cards/PNG-cards-1.3/7C.png')
-_7C = pygame.transform.scale(back_of_card, (100, 150))
+_7C = pygame.transform.scale(_7C, (100, 150))
 _7S = pygame.image.load('./Playing Cards/PNG-cards-1.3/7S.png')
-_7S = pygame.transform.scale(back_of_card, (100, 150))
+_7S = pygame.transform.scale(_7S, (100, 150))
 _8H = pygame.image.load('./Playing Cards/PNG-cards-1.3/8H.png')
-_8H = pygame.transform.scale(back_of_card, (100, 150))
+_8H = pygame.transform.scale(_8H, (100, 150))
 _8D = pygame.image.load('./Playing Cards/PNG-cards-1.3/8D.png')
-_8D = pygame.transform.scale(back_of_card, (100, 150))
+_8D = pygame.transform.scale(_8D, (100, 150))
 _8C = pygame.image.load('./Playing Cards/PNG-cards-1.3/8C.png')
-_8C = pygame.transform.scale(back_of_card, (100, 150))
+_8C = pygame.transform.scale(_8C, (100, 150))
 _8S = pygame.image.load('./Playing Cards/PNG-cards-1.3/8S.png')
-_8S = pygame.transform.scale(back_of_card, (100, 150))
+_8S = pygame.transform.scale(_8S, (100, 150))
 _9H = pygame.image.load('./Playing Cards/PNG-cards-1.3/9H.png')
-_9H = pygame.transform.scale(back_of_card, (100, 150))
+_9H = pygame.transform.scale(_9H, (100, 150))
 _9D = pygame.image.load('./Playing Cards/PNG-cards-1.3/9D.png')
-_9D = pygame.transform.scale(back_of_card, (100, 150))
+_9D = pygame.transform.scale(_9D, (100, 150))
 _9C = pygame.image.load('./Playing Cards/PNG-cards-1.3/9C.png')
-_9C = pygame.transform.scale(back_of_card, (100, 150))
+_9C = pygame.transform.scale(_9C, (100, 150))
 _9S = pygame.image.load('./Playing Cards/PNG-cards-1.3/9S.png')
-_9S = pygame.transform.scale(back_of_card, (100, 150))
+_9S = pygame.transform.scale(_9S, (100, 150))
 _10H = pygame.image.load('./Playing Cards/PNG-cards-1.3/10H.png')
-_10H = pygame.transform.scale(back_of_card, (100, 150))
+_10H = pygame.transform.scale(_10H, (100, 150))
 _10D = pygame.image.load('./Playing Cards/PNG-cards-1.3/10D.png')
-_10D = pygame.transform.scale(back_of_card, (100, 150))
+_10D = pygame.transform.scale(_10D, (100, 150))
 _10C = pygame.image.load('./Playing Cards/PNG-cards-1.3/10C.png')
-_10C = pygame.transform.scale(back_of_card, (100, 150))
+_10C = pygame.transform.scale(_10C, (100, 150))
 _10S = pygame.image.load('./Playing Cards/PNG-cards-1.3/10S.png')
-_10S = pygame.transform.scale(back_of_card, (100, 150))
+_10S = pygame.transform.scale(_10S, (100, 150))
 _JH = pygame.image.load('./Playing Cards/PNG-cards-1.3/JH.png')
-_JH = pygame.transform.scale(back_of_card, (100, 150))
+_JH = pygame.transform.scale(_JH, (100, 150))
 _JD = pygame.image.load('./Playing Cards/PNG-cards-1.3/JD.png')
-_JD = pygame.transform.scale(back_of_card, (100, 150))
+_JD = pygame.transform.scale(_JD, (100, 150))
 _JC = pygame.image.load('./Playing Cards/PNG-cards-1.3/JC.png')
-_JC = pygame.transform.scale(back_of_card, (100, 150))
+_JC = pygame.transform.scale(_JC, (100, 150))
 _JS = pygame.image.load('./Playing Cards/PNG-cards-1.3/JS.png')
-_JS = pygame.transform.scale(back_of_card, (100, 150))
+_JS = pygame.transform.scale(_JS, (100, 150))
 _QH = pygame.image.load('./Playing Cards/PNG-cards-1.3/QH.png')
-_QH = pygame.transform.scale(back_of_card, (100, 150))
+_QH = pygame.transform.scale(_QH, (100, 150))
 _QD = pygame.image.load('./Playing Cards/PNG-cards-1.3/QD.png')
-_QD = pygame.transform.scale(back_of_card, (100, 150))
+_QD = pygame.transform.scale(_QD, (100, 150))
 _QC = pygame.image.load('./Playing Cards/PNG-cards-1.3/QC.png')
-_QC = pygame.transform.scale(back_of_card, (100, 150))
+_QC = pygame.transform.scale(_QC, (100, 150))
 _QS = pygame.image.load('./Playing Cards/PNG-cards-1.3/QS.png')
-_QS = pygame.transform.scale(back_of_card, (100, 150))
+_QS = pygame.transform.scale(_QS, (100, 150))
 _KH = pygame.image.load('./Playing Cards/PNG-cards-1.3/KH.png')
-_KH = pygame.transform.scale(back_of_card, (100, 150))
+_KH = pygame.transform.scale(_KH, (100, 150))
 _KD = pygame.image.load('./Playing Cards/PNG-cards-1.3/KD.png')
-_KD = pygame.transform.scale(back_of_card, (100, 150))
+_KD = pygame.transform.scale(_KD, (100, 150))
 _KC = pygame.image.load('./Playing Cards/PNG-cards-1.3/KC.png')
-_KC = pygame.transform.scale(back_of_card, (100, 150))
+_KC = pygame.transform.scale(_KC, (100, 150))
 _KS = pygame.image.load('./Playing Cards/PNG-cards-1.3/KS.png')
-_KS = pygame.transform.scale(back_of_card, (100, 150))
+_KS = pygame.transform.scale(_KS, (100, 150))
 
-pygame.display.flip()
 running = True
-
-
-
-#  Right now what this does is put the image "back_of_card" along the bottom left side of the screens
-#  Also right now I have back_of_card as the standing for the working cards
 while running:
     for i in range(0, 5):
-        screen.blit(_2D, (110 * i, 550))
+        screen.blit(_KS, (190 + 130 * i, 550))
         pygame.display.update()
-    screen.blit(_6H, (375, 225))  # Working Card 1
-    screen.blit(_9D, (525, 225))  # Working Card 2
 
+    screen.blit(_3D, (375, 250))  # working card 1
+    screen.blit(_4H, (525, 250))  # working card 2
+    screen.blit(back_of_card, (120, 250))  # standby deck 1
+    screen.blit(back_of_card, (780, 250))  # standby deck 2
     pygame.display.update()
-    # Not sure exactly what this does right now, but it is needed to avoid an infinite loop and for stuff to appear
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
