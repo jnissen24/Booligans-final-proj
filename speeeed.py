@@ -41,6 +41,10 @@ class Card:
     def show(self):
         print("{}{}".format(self.value, self.suit))
 
+    def getstr(self):
+        str = '{}{}'.format(self.value, self.suit)
+        return str
+
 
 # creates Deck class
 class Deck:
@@ -195,12 +199,18 @@ def card_value(card):
     return value
 
 
-def displayStatus(deck):
+def showDeck(mydeck):
+    mystr = ''
+    for c in mydeck:
+        mystr = mystr + ',' + c.getstr()
+    print(mystr)
+
+def displayStatus(deck, computer_hand):
     print('Standby1 : ')
-    [x.show() for x in deck.standby1]
+    showDeck(deck.standby1)
 
     print('Standby2 : ')
-    [x.show() for x in deck.standby2]
+    showDeck(deck.standby2)
 
     print('Wrkcard1 : ')
     deck.wrkcard1.show()
@@ -208,15 +218,21 @@ def displayStatus(deck):
     print('Wrkcard2 : ')
     deck.wrkcard2.show()
 
+    print('Computer Hand:')
+    showDeck(computer_hand)
+
+    print('Computer Cards: ')
+    showDeck(deck.computer_cards)
+
 
 ### ACTUAL GAME STARTS ###
 deck = Deck()
 # print statement for wrkcard since only has one object
-# print(deck.wrkcard1.show())
-# print(deck.wrkcard2.show())
+#print(deck.wrkcard1.show())
+#print(deck.wrkcard2.show())
 # print statement for all other piles
-# print([x.show() for x in deck.computer_cards])
-# print([x.show() for x in deck.player_cards])
+#print([x.show() for x in deck.computer_cards])
+#print([x.show() for x in deck.player_cards])
 
 # take first 5 cards of each player's stack to be in active hand
 computer_hand = []
@@ -224,6 +240,20 @@ player_hand = []
 for i in range(0, 5):
     computer_hand.append(deck.computer_cards[i])
     player_hand.append(deck.player_cards[i])  # this used to be deck.computer_cards but should be this maybe?
+
+deck.computer_cards.pop(0)
+deck.computer_cards.pop(0)
+deck.computer_cards.pop(0)
+deck.computer_cards.pop(0)
+deck.computer_cards.pop(0)
+deck.player_cards.pop(0)
+deck.player_cards.pop(0)
+deck.player_cards.pop(0)
+deck.player_cards.pop(0)
+deck.player_cards.pop(0)
+
+
+
 
 # print([x.show() for x in computer_hand])
 # print([x.show() for x in player_hand])
@@ -237,23 +267,39 @@ game_over = False
 while not game_over:
     count = 0
     count_player = 0
-    for item in computer_hand:
-        displayStatus(deck)
+    displayStatus(deck, computer_hand)
+    while len(computer_hand) > 0 and (not game_over) and (count < len(computer_hand)):
+        item = computer_hand[count]
+        # for item in computer_hand:
+
         count = count + 1
         length_comp = len(computer_hand)
 
-        if item == (deck.wrkcard1.value + 1) or item == (deck.wrkcard1.value - 1) or item == (
-                deck.wrkcard2.value + 1) or item == (deck.wrkcard2.value - 1):
-            if item == (deck.wrkcard1.value + 1) or item == (deck.wrkcard1.value - 1):
-                deck.standby1.append(deck.wrkcard1)  # keeps deck.wrkcard1 at holding one thing
-                deck.wrkcard1 = item
+        # if item == (deck.wrkcard1.value + 1) or item == (deck.wrkcard1.value - 1) or item == (
+        #        deck.wrkcard2.value + 1) or item == (deck.wrkcard2.value - 1):
+        #import pdb; pdb.set_trace()
+        if (item.value == (deck.wrkcard1.value + 1)) or (item.value == (deck.wrkcard1.value - 1)):
+            displayStatus(deck, computer_hand)
+            deck.standby1.append(deck.wrkcard1)  # keeps deck.wrkcard1 at holding one thing
+            deck.wrkcard1 = item
+            computer_hand.pop(count-1)
+            if len(deck.computer_cards) > 0:
                 computer_hand.append(deck.computer_cards[0])
                 deck.computer_cards.pop(0)
-            elif item == (deck.wrkcard2.value + 1) or item == (deck.wrkcard2.value - 1):
-                deck.standby2.append(deck.wrkcard2)
-                deck.wrkcard2 = item
+                count = 0
+            else:
+                count = 0
+        elif (item.value == (deck.wrkcard2.value + 1)) or (item.value == (deck.wrkcard2.value - 1)):
+            displayStatus(deck, computer_hand)
+            deck.standby2.append(deck.wrkcard2)
+            deck.wrkcard2 = item
+            computer_hand.pop(count-1)
+            if len(deck.computer_cards) > 0:
                 computer_hand.append(deck.computer_cards[0])
                 deck.computer_cards.pop(0)
+                count = 0
+            else:
+                count = 0
         elif count == length_comp:
             count = 0
             deck.wrkcard1 = deck.standby1[0]
@@ -261,7 +307,7 @@ while not game_over:
             deck.wrkcard2 = deck.standby2[0]
             deck.standby2.pop(0)
         else:
-            if len(deck.computer_cards) == 0 and len(deck.computer_hand) == 0:
+            if len(deck.computer_cards) == 0 and len(computer_hand) == 0:
                 print('Computer has won the game!')
                 game_over = True
 
