@@ -11,6 +11,10 @@ class Card:
     def show(self):
         print("{}{}".format(self.value, self.suit))
 
+    def getstr(self):
+        str = '{}{}'.format(self.value, self.suit)
+        return str
+
 
 # creates Deck class
 class Deck:
@@ -291,14 +295,26 @@ _KC = pygame.transform.scale(_KC, (100, 150))
 _KS = pygame.image.load('./Playing Cards/PNG-cards-1.3/KS.png')
 _KS = pygame.transform.scale(_KS, (100, 150))
 
+deck = Deck()
+
+wrkcard1_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard1.getstr() + '.png')
+wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
+wrkcard2_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard2.getstr() + '.png')
+wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
+
+#player_hand_pics = []
+#for i in range(0, 5):
+   # player_hand_pics[i] = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.player_cards[i].getstr() + '.png')
+    #player_hand_pics[i] = pygame.transform.scale(player_hand_pics[i], (100, 150))
+
 running = True
 while running:
     for i in range(0, 5):
         screen.blit(_KS, (190 + 130 * i, 550))
         pygame.display.update()
 
-    screen.blit(_3D, (375, 250))  # working card 1
-    screen.blit(_4H, (525, 250))  # working card 2
+    screen.blit(wrkcard1_pic, (375, 250))  # working card 1
+    screen.blit(wrkcard2_pic, (525, 250))  # working card 2
     screen.blit(back_of_card, (120, 250))  # standby deck 1
     screen.blit(back_of_card, (780, 250))  # standby deck 2
     pygame.display.update()
