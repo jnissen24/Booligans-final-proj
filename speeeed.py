@@ -269,17 +269,12 @@ while not game_over:
     count_player = 0
     displayStatus(deck, computer_hand)
     while len(computer_hand) > 0 and (not game_over) and (count < len(computer_hand)):
+        #import ipdb; ipdb.set_trace()
         item = computer_hand[count]
-        # for item in computer_hand:
-
         count = count + 1
         length_comp = len(computer_hand)
 
-        # if item == (deck.wrkcard1.value + 1) or item == (deck.wrkcard1.value - 1) or item == (
-        #        deck.wrkcard2.value + 1) or item == (deck.wrkcard2.value - 1):
-        #import pdb; pdb.set_trace()
         if (item.value == (deck.wrkcard1.value + 1)) or (item.value == (deck.wrkcard1.value - 1)):
-            displayStatus(deck, computer_hand)
             deck.standby1.append(deck.wrkcard1)  # keeps deck.wrkcard1 at holding one thing
             deck.wrkcard1 = item
             computer_hand.pop(count-1)
@@ -289,8 +284,10 @@ while not game_over:
                 count = 0
             else:
                 count = 0
-        elif (item.value == (deck.wrkcard2.value + 1)) or (item.value == (deck.wrkcard2.value - 1)):
+
+            print('Replace working card 1')
             displayStatus(deck, computer_hand)
+        elif (item.value == (deck.wrkcard2.value + 1)) or (item.value == (deck.wrkcard2.value - 1)):
             deck.standby2.append(deck.wrkcard2)
             deck.wrkcard2 = item
             computer_hand.pop(count-1)
@@ -300,16 +297,26 @@ while not game_over:
                 count = 0
             else:
                 count = 0
+            print('Replace working card 2')
+            displayStatus(deck, computer_hand)
         elif count == length_comp:
             count = 0
             deck.wrkcard1 = deck.standby1[0]
-            deck.standby1.pop(0)
+            card = deck.standby1.pop(0)
+            deck.standby1.append(card)
+
             deck.wrkcard2 = deck.standby2[0]
-            deck.standby2.pop(0)
+            card = deck.standby2.pop(0)
+            deck.standby2.append(card)
+
+            print('Flip')
+            displayStatus(deck, computer_hand)
         else:
-            if len(deck.computer_cards) == 0 and len(computer_hand) == 0:
-                print('Computer has won the game!')
-                game_over = True
+            pass
+
+    if len(deck.computer_cards) == 0 and len(computer_hand) == 0:
+        print('Computer has won the game!')
+        game_over = True
 
     # for item in player_hand:
     #   count_player = count_player + 1
