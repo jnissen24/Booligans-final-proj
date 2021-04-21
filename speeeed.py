@@ -274,7 +274,7 @@ while not game_over:
         count = count + 1
         length_comp = len(computer_hand)
 
-        if (item.value == (deck.wrkcard1.value + 1)) or (item.value == (deck.wrkcard1.value - 1)):
+        if (item.value == (deck.wrkcard1.value + 1)) or (item.value == (deck.wrkcard1.value - 1)) or (item.value == 13 and (deck.wrkcard1.value == 1)) or (item.value == 1 and (deck.wrkcard1.value == 13)):
             deck.standby1.append(deck.wrkcard1)  # keeps deck.wrkcard1 at holding one thing
             deck.wrkcard1 = item
             computer_hand.pop(count-1)
@@ -287,7 +287,7 @@ while not game_over:
 
             print('Replace working card 1')
             displayStatus(deck, computer_hand)
-        elif (item.value == (deck.wrkcard2.value + 1)) or (item.value == (deck.wrkcard2.value - 1)):
+        elif (item.value == (deck.wrkcard2.value + 1)) or (item.value == (deck.wrkcard2.value - 1)) or (item.value == 13 and (deck.wrkcard2.value == 1)) or (item.value == 1 and (deck.wrkcard2.value == 13)):
             deck.standby2.append(deck.wrkcard2)
             deck.wrkcard2 = item
             computer_hand.pop(count-1)
