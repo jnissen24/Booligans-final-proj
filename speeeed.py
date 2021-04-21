@@ -265,6 +265,9 @@ while running:
                     if (player_hand[0].value == (deck.wrkcard1.value + 1)) or (player_hand[0].value == (deck.wrkcard1.value - 1)) or (player_hand[0].value == 13 and (deck.wrkcard1.value == 1)) or (player_hand[0].value == 1 and (deck.wrkcard1.value == 13)):
                         deck.standby1.append(deck.wrkcard1)
                         deck.wrkcard1 = player_hand[0]
+                        wrkcard1_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[0].getstr() + '.png')
+                        wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
+                        pygame.display.update()
                         player_hand.pop(0)
                         if len(deck.player_cards) > 0:
                             player_hand.append(deck.player_cards[0])
@@ -273,6 +276,9 @@ while running:
                     elif (player_hand[0].value == (deck.wrkcard2.value + 1)) or (player_hand[0].value == (deck.wrkcard2.value - 1)) or (player_hand[0].value == 13 and (deck.wrkcard2.value == 1)) or (player_hand[0].value == 1 and (deck.wrkcard2.value == 13)):
                         deck.standby2.append(deck.wrkcard2)
                         deck.wrkcard2 = player_hand[0]
+                        wrkcard2_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[0].getstr() + '.png')
+                        wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
+                        pygame.display.update()
                         player_hand.pop(0)
                         if len(deck.player_cards) > 0:
                             player_hand.append(deck.player_cards[0])
@@ -284,6 +290,9 @@ while running:
                     if (player_hand[1].value == (deck.wrkcard1.value + 1)) or (player_hand[1].value == (deck.wrkcard1.value - 1)) or (player_hand[1].value == 13 and (deck.wrkcard1.value == 1)) or (player_hand[1].value == 1 and (deck.wrkcard1.value == 13)):
                         deck.standby1.append(deck.wrkcard1)
                         deck.wrkcard1 = player_hand[1]
+                        wrkcard1_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[1].getstr() + '.png')
+                        wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
+                        pygame.display.update()
                         player_hand.pop(1)
                         if len(deck.player_cards) > 0:
                             player_hand.append(deck.player_cards[0])
@@ -292,6 +301,10 @@ while running:
                     elif (player_hand[1].value == (deck.wrkcard2.value + 1)) or (player_hand[1].value == (deck.wrkcard2.value - 1)) or (player_hand[1].value == 13 and (deck.wrkcard2.value == 1)) or (player_hand[1].value == 1 and (deck.wrkcard2.value == 13)):
                         deck.standby2.append(deck.wrkcard2)
                         deck.wrkcard2 = player_hand[1]
+                        wrkcard2_pic = pygame.image.load(
+                            './Playing Cards/PNG-cards-1.3/' + player_hand[1].getstr() + '.png')
+                        wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
+                        pygame.display.update()
                         player_hand.pop(1)
                         if len(deck.player_cards) > 0:
                             player_hand.append(deck.player_cards[0])
@@ -303,6 +316,10 @@ while running:
                     if (player_hand[2].value == (deck.wrkcard1.value + 1)) or (player_hand[2].value == (deck.wrkcard1.value - 1)) or (player_hand[2].value == 13 and (deck.wrkcard1.value == 1)) or (player_hand[2].value == 1 and (deck.wrkcard1.value == 13)):
                         deck.standby1.append(deck.wrkcard1)
                         deck.wrkcard1 = player_hand[2]
+                        wrkcard1_pic = pygame.image.load(
+                            './Playing Cards/PNG-cards-1.3/' + player_hand[2].getstr() + '.png')
+                        wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
+                        pygame.display.update()
                         player_hand.pop(2)
                         if len(deck.player_cards) > 0:
                             player_hand.append(deck.player_cards[0])
@@ -311,6 +328,10 @@ while running:
                     elif (player_hand[2].value == (deck.wrkcard2.value + 1)) or (player_hand[2].value == (deck.wrkcard2.value - 1)) or (player_hand[2].value == 13 and (deck.wrkcard2.value == 1)) or (player_hand[2].value == 1 and (deck.wrkcard2.value == 13)):
                         deck.standby2.append(deck.wrkcard2)
                         deck.wrkcard2 = player_hand[2]
+                        wrkcard2_pic = pygame.image.load(
+                            './Playing Cards/PNG-cards-1.3/' + player_hand[2].getstr() + '.png')
+                        wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
+                        pygame.display.update()
                         player_hand.pop(2)
                         if len(deck.player_cards) > 0:
                             player_hand.append(deck.player_cards[0])
@@ -322,6 +343,10 @@ while running:
                     if (player_hand[3].value == (deck.wrkcard1.value + 1)) or (player_hand[3].value == (deck.wrkcard1.value - 1)) or (player_hand[3].value == 13 and (deck.wrkcard1.value == 1)) or (player_hand[3].value == 1 and (deck.wrkcard1.value == 13)):
                         deck.standby1.append(deck.wrkcard1)
                         deck.wrkcard1 = player_hand[3]
+                        wrkcard1_pic = pygame.image.load(
+                            './Playing Cards/PNG-cards-1.3/' + player_hand[3].getstr() + '.png')
+                        wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
+                        pygame.display.update()
                         player_hand.pop(3)
                         if len(deck.player_cards) > 0:
                             player_hand.append(deck.player_cards[0])
@@ -330,6 +355,10 @@ while running:
                     elif (player_hand[3].value == (deck.wrkcard2.value + 1)) or (player_hand[3].value == (deck.wrkcard2.value - 1)) or (player_hand[3].value == 13 and (deck.wrkcard2.value == 1)) or (player_hand[3].value == 1 and (deck.wrkcard2.value == 13)):
                         deck.standby2.append(deck.wrkcard2)
                         deck.wrkcard2 = player_hand[3]
+                        wrkcard2_pic = pygame.image.load(
+                            './Playing Cards/PNG-cards-1.3/' + player_hand[3].getstr() + '.png')
+                        wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
+                        pygame.display.update()
                         player_hand.pop(3)
                         if len(deck.player_cards) > 0:
                             player_hand.append(deck.player_cards[0])
@@ -341,6 +370,10 @@ while running:
                     if (player_hand[4].value == (deck.wrkcard1.value + 1)) or (player_hand[0].value == (deck.wrkcard1.value - 1)) or (player_hand[4].value == 13 and (deck.wrkcard1.value == 1)) or (player_hand[4].value == 1 and (deck.wrkcard1.value == 13)):
                         deck.standby1.append(deck.wrkcard1)
                         deck.wrkcard1 = player_hand[4]
+                        wrkcard1_pic = pygame.image.load(
+                            './Playing Cards/PNG-cards-1.3/' + player_hand[4].getstr() + '.png')
+                        wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
+                        pygame.display.update()
                         player_hand.pop(4)
                         if len(deck.player_cards) > 0:
                             player_hand.append(deck.player_cards[0])
@@ -349,6 +382,10 @@ while running:
                     elif (player_hand[4].value == (deck.wrkcard2.value + 1)) or (player_hand[4].value == (deck.wrkcard2.value - 1)) or (player_hand[4].value == 13 and (deck.wrkcard2.value == 1)) or (player_hand[4].value == 1 and (deck.wrkcard2.value == 13)):
                         deck.standby2.append(deck.wrkcard2)
                         deck.wrkcard2 = player_hand[4]
+                        wrkcard2_pic = pygame.image.load(
+                            './Playing Cards/PNG-cards-1.3/' + player_hand[4].getstr() + '.png')
+                        wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
+                        pygame.display.update()
                         player_hand.pop(4)
                         if len(deck.player_cards) > 0:
                             player_hand.append(deck.player_cards[0])
