@@ -94,114 +94,6 @@ class Deck:
 
 
 # function to obtain value of individual card
-def card_value(card):
-    if card == "AD":
-        value = 1
-    elif card == "AC":
-        value = 1
-    elif card == "AH":
-        value = 1
-    elif card == "AS":
-        value = 1
-    elif card == "2D":
-        value = 2
-    elif card == "2C":
-        value = 2
-    elif card == "2H":
-        value = 2
-    elif card == "2S":
-        value = 2
-    elif card == "3D":
-        value = 3
-    elif card == "3C":
-        value = 3
-    elif card == "3H":
-        value = 3
-    elif card == "3S":
-        value = 3
-    elif card == "4D":
-        value = 4
-    elif card == "4C":
-        value = 4
-    elif card == "4H":
-        value = 4
-    elif card == "4S":
-        value = 4
-    elif card == "5D":
-        value = 5
-    elif card == "5C":
-        value = 5
-    elif card == "5H":
-        value = 5
-    elif card == "5S":
-        value = 5
-    elif card == "6D":
-        value = 6
-    elif card == "6C":
-        value = 6
-    elif card == "6H":
-        value = 6
-    elif card == "6S":
-        value = 6
-    elif card == "7D":
-        value = 7
-    elif card == "7C":
-        value = 7
-    elif card == "7H":
-        value = 7
-    elif card == "7S":
-        value = 7
-    elif card == "8D":
-        value = 8
-    elif card == "8C":
-        value = 8
-    elif card == "8H":
-        value = 8
-    elif card == "8S":
-        value = 8
-    elif card == "9D":
-        value = 9
-    elif card == "9C":
-        value = 9
-    elif card == "9H":
-        value = 9
-    elif card == "9S":
-        value = 9
-    elif card == "10D":
-        value = 10
-    elif card == "10C":
-        value = 10
-    elif card == "10H":
-        value = 10
-    elif card == "10S":
-        value = 10
-    elif card == "JD":
-        value = 11
-    elif card == "JC":
-        value = 11
-    elif card == "JH":
-        value = 11
-    elif card == "JS":
-        value = 11
-    elif card == "QD":
-        value = 12
-    elif card == "QC":
-        value = 12
-    elif card == "QH":
-        value = 12
-    elif card == "QS":
-        value = 12
-    elif card == "KD":
-        value = 13
-    elif card == "KC":
-        value = 13
-    elif card == "KH":
-        value = 13
-    elif card == "KS":
-        value = 13
-    else:
-        value = 0
-    return value
 
 
 def showDeck(mydeck):
@@ -228,6 +120,80 @@ def displayStatus(deck, computer_hand):
 
     print('Computer Cards: ')
     showDeck(deck.computer_cards)
+
+
+def computer_gameplay():
+    count = 0
+    count_player = 0
+    displayStatus(deck, computer_hand)
+
+    while len(computer_hand) > 0 and (not game_over) and (count < len(computer_hand)):
+        # import ipdb; ipdb.set_trace()
+        item = computer_hand[count]
+        count = count + 1
+        length_comp = len(computer_hand)
+        if (item.value == (deck.wrkcard1.value + 1)) or (item.value == (deck.wrkcard1.value - 1)) or (
+                item.value == 13 and (deck.wrkcard1.value == 1)) or (
+                item.value == 1 and (deck.wrkcard1.value == 13)):
+            deck.standby1.append(deck.wrkcard1)  # keeps deck.wrkcard1 at holding one thing
+            deck.wrkcard1 = item
+            wrkcard1_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard1.getstr() + '.png')
+            wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
+
+
+            pygame.display.update()
+            computer_hand.pop(count - 1)
+            if len(deck.computer_cards) > 0:
+                computer_hand.append(deck.computer_cards[0])
+                deck.computer_cards.pop(0)
+                count = 0
+            else:
+                count = 0
+
+            print('Replace working card 1')
+            displayStatus(deck, computer_hand)
+        elif (item.value == (deck.wrkcard2.value + 1)) or (item.value == (deck.wrkcard2.value - 1)) or (
+                item.value == 13 and (deck.wrkcard2.value == 1)) or (
+                item.value == 1 and (deck.wrkcard2.value == 13)):
+            deck.standby2.append(deck.wrkcard2)
+            deck.wrkcard2 = item
+            wrkcard2_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard2.getstr() + '.png')
+            wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
+
+
+            pygame.display.update()
+            computer_hand.pop(count - 1)
+            if len(deck.computer_cards) > 0:
+                computer_hand.append(deck.computer_cards[0])
+                deck.computer_cards.pop(0)
+                count = 0
+            else:
+                count = 0
+            print('Replace working card 2')
+            displayStatus(deck, computer_hand)
+        elif count == length_comp:
+            count = 0
+            deck.wrkcard1 = deck.standby1[0]
+            card = deck.standby1.pop(0)
+            deck.standby1.append(card)
+            wrkcard1_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard1.getstr() + '.png')
+            wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
+            deck.wrkcard2 = deck.standby2[0]
+            card = deck.standby2.pop(0)
+            deck.standby2.append(card)
+            wrkcard2_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard2.getstr() + '.png')
+            wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
+            print('Flip')
+            displayStatus(deck, computer_hand)
+        else:
+            pass
+
+    if len(deck.computer_cards) == 0 and len(computer_hand) == 0:
+        print('Computer has won the game!')
+        game_over = True
+
+
+
 
 
 ### ACTUAL GAME STARTS ###
@@ -289,12 +255,12 @@ while running:
         count = 0
         count_player = 0
         displayStatus(deck, computer_hand)
+
         while len(computer_hand) > 0 and (not game_over) and (count < len(computer_hand)):
             # import ipdb; ipdb.set_trace()
             item = computer_hand[count]
             count = count + 1
             length_comp = len(computer_hand)
-
             if (item.value == (deck.wrkcard1.value + 1)) or (item.value == (deck.wrkcard1.value - 1)) or (
                     item.value == 13 and (deck.wrkcard1.value == 1)) or (
                     item.value == 1 and (deck.wrkcard1.value == 13)):
@@ -303,7 +269,7 @@ while running:
                 wrkcard1_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard1.getstr() + '.png')
                 wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
 
-                #time.sleep(10)
+
                 pygame.display.update()
                 computer_hand.pop(count - 1)
                 if len(deck.computer_cards) > 0:
@@ -323,7 +289,7 @@ while running:
                 wrkcard2_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard2.getstr() + '.png')
                 wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
 
-                #time.sleep(10)
+
                 pygame.display.update()
                 computer_hand.pop(count - 1)
                 if len(deck.computer_cards) > 0:
@@ -339,11 +305,13 @@ while running:
                 deck.wrkcard1 = deck.standby1[0]
                 card = deck.standby1.pop(0)
                 deck.standby1.append(card)
-
+                wrkcard1_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard1.getstr() + '.png')
+                wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
                 deck.wrkcard2 = deck.standby2[0]
                 card = deck.standby2.pop(0)
                 deck.standby2.append(card)
-
+                wrkcard2_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard2.getstr() + '.png')
+                wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
                 print('Flip')
                 displayStatus(deck, computer_hand)
             else:
