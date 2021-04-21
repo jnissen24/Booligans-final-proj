@@ -31,7 +31,7 @@ target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.
 
 import random
 import pygame
-import keyboard
+
 
 
 # creates Card class
@@ -240,11 +240,6 @@ deck = Deck()
 #print([x.show() for x in deck.computer_cards])
 #print([x.show() for x in deck.player_cards])
 
-while True:
-    if keyboard.read.key() == "g":
-        print("You pressed one")
-        break
-
 # Margins
 margin_left = 250
 margin_top = 150
@@ -284,16 +279,115 @@ deck.player_cards.pop(0)
 deck.player_cards.pop(0)
 deck.player_cards.pop(0)
 
+print(deck.wrkcard1.show())
+print(deck.wrkcard2.show())
+import time
+running = True
+while running:
+    game_over = False
+    while not game_over:
+        count = 0
+        count_player = 0
+        displayStatus(deck, computer_hand)
+        while len(computer_hand) > 0 and (not game_over) and (count < len(computer_hand)):
+            # import ipdb; ipdb.set_trace()
+            item = computer_hand[count]
+            count = count + 1
+            length_comp = len(computer_hand)
+
+            if (item.value == (deck.wrkcard1.value + 1)) or (item.value == (deck.wrkcard1.value - 1)) or (
+                    item.value == 13 and (deck.wrkcard1.value == 1)) or (
+                    item.value == 1 and (deck.wrkcard1.value == 13)):
+                deck.standby1.append(deck.wrkcard1)  # keeps deck.wrkcard1 at holding one thing
+                deck.wrkcard1 = item
+                wrkcard1_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard1.getstr() + '.png')
+                wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
+
+                #time.sleep(10)
+                pygame.display.update()
+                computer_hand.pop(count - 1)
+                if len(deck.computer_cards) > 0:
+                    computer_hand.append(deck.computer_cards[0])
+                    deck.computer_cards.pop(0)
+                    count = 0
+                else:
+                    count = 0
+
+                print('Replace working card 1')
+                displayStatus(deck, computer_hand)
+            elif (item.value == (deck.wrkcard2.value + 1)) or (item.value == (deck.wrkcard2.value - 1)) or (
+                    item.value == 13 and (deck.wrkcard2.value == 1)) or (
+                    item.value == 1 and (deck.wrkcard2.value == 13)):
+                deck.standby2.append(deck.wrkcard2)
+                deck.wrkcard2 = item
+                wrkcard2_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard2.getstr() + '.png')
+                wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
+
+                #time.sleep(10)
+                pygame.display.update()
+                computer_hand.pop(count - 1)
+                if len(deck.computer_cards) > 0:
+                    computer_hand.append(deck.computer_cards[0])
+                    deck.computer_cards.pop(0)
+                    count = 0
+                else:
+                    count = 0
+                print('Replace working card 2')
+                displayStatus(deck, computer_hand)
+            elif count == length_comp:
+                count = 0
+                deck.wrkcard1 = deck.standby1[0]
+                card = deck.standby1.pop(0)
+                deck.standby1.append(card)
+
+                deck.wrkcard2 = deck.standby2[0]
+                card = deck.standby2.pop(0)
+                deck.standby2.append(card)
+
+                print('Flip')
+                displayStatus(deck, computer_hand)
+            else:
+                pass
+
+        if len(deck.computer_cards) == 0 and len(computer_hand) == 0:
+            print('Computer has won the game!')
+            game_over = True
 
 
 
-# print([x.show() for x in computer_hand])
-# print([x.show() for x in player_hand])
+
+    player_hand_pic1 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[0].getstr() + '.png')
+    player_hand_pic1 = pygame.transform.scale(player_hand_pic1, (100, 150))
+    player_hand_pic2 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[1].getstr() + '.png')
+    player_hand_pic2 = pygame.transform.scale(player_hand_pic2, (100, 150))
+    player_hand_pic3 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[2].getstr() + '.png')
+    player_hand_pic3 = pygame.transform.scale(player_hand_pic3, (100, 150))
+    player_hand_pic4 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[3].getstr() + '.png')
+    player_hand_pic4 = pygame.transform.scale(player_hand_pic4, (100, 150))
+    player_hand_pic5 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[4].getstr() + '.png')
+    player_hand_pic5 = pygame.transform.scale(player_hand_pic5, (100, 150))
+
+    # Load images of player hand
+    screen.blit(player_hand_pic1, (200, 550))
+    screen.blit(player_hand_pic2, (330, 550))
+    screen.blit(player_hand_pic3, (460, 550))
+    screen.blit(player_hand_pic4, (590, 550))
+    screen.blit(player_hand_pic5, (720, 550))
+    pygame.display.update()
+
+    # Load images of working cards and standby decks
+    screen.blit(wrkcard1_pic, (375, 250))  # working card 1
+    screen.blit(wrkcard2_pic, (525, 250))  # working card 2
+    screen.blit(back_of_card, (120, 250))  # standby deck 1
+    screen.blit(back_of_card, (780, 250))  # standby deck 2
+
+    pygame.display.update()
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
 
 # loop for game play
-
-# print(card_value("KC"))
-# print("done")
 
 game_over = False
 while not game_over:
@@ -350,7 +444,7 @@ while not game_over:
         print('Computer has won the game!')
         game_over = True
 
-import pygame
+
 for event in pygame.event.get():
     if event.type == pygame.QUIT:
         quit_game()
