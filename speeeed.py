@@ -32,7 +32,6 @@ target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.
 import random
 import pygame
 
-
 # creates Card class
 
 class Card:
@@ -89,7 +88,6 @@ class Deck:
         self.wrkcard1 = self.cards[50]
         self.wrkcard2 = self.cards[51]
 
-
 def showDeck(mydeck):
     mystr = ''
     for c in mydeck:
@@ -115,7 +113,6 @@ def displayStatus(deck, computer_hand):
 
     print('Computer Cards: ')
     showDeck(deck.computer_cards)
-
 
 ### ACTUAL GAME STARTS ###
 deck = Deck()
@@ -166,176 +163,226 @@ deck.player_cards.pop(0)
 deck.player_cards.pop(0)
 deck.player_cards.pop(0)
 
+print(deck.wrkcard1.show())
+print(deck.wrkcard2.show())
+import time
+running = True
+while running:
+    wrkcard1_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard1.getstr() + '.png')
+    wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
+    wrkcard2_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard2.getstr() + '.png')
+    wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
 
-# loop for game play
-def computer_gameplay():
-    count = 0
-    count_player = 0
-    displayStatus(deck, computer_hand)
-    while len(computer_hand) > 0 and (count < len(computer_hand)):
-        item = computer_hand[count]
-        count = count + 1
-        length_comp = len(computer_hand)
-        if (item.value == (deck.wrkcard1.value + 1)) or (item.value == (deck.wrkcard1.value - 1)) or (item.value == 13 and (deck.wrkcard1.value == 1)) or (item.value == 1 and (deck.wrkcard1.value == 13)):
-            deck.standby1.append(deck.wrkcard1)  # keeps deck.wrkcard1 at holding one thing
-            deck.wrkcard1 = item
-            computer_hand.pop(count-1)
-            if len(deck.computer_cards) > 0:
-                computer_hand.append(deck.computer_cards[0])
-                deck.computer_cards.pop(0)
-                count = 0
-            else:
-                count = 0
-            print('Replace working card 1')
-            displayStatus(deck, computer_hand)
-            break
-        elif (item.value == (deck.wrkcard2.value + 1)) or (item.value == (deck.wrkcard2.value - 1)) or (item.value == 13 and (deck.wrkcard2.value == 1)) or (item.value == 1 and (deck.wrkcard2.value == 13)):
-            deck.standby2.append(deck.wrkcard2)
-            deck.wrkcard2 = item
-            computer_hand.pop(count-1)
-            if len(deck.computer_cards) > 0:
-                computer_hand.append(deck.computer_cards[0])
-                deck.computer_cards.pop(0)
-                count = 0
-            else:
-                count = 0
-            print('Replace working card 2')
-            displayStatus(deck, computer_hand)
-            break
-        elif count == length_comp:
-            count = 0
-            break
-        else:
-            pass
+    player_hand_pic1 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[0].getstr() + '.png')
+    player_hand_pic1 = pygame.transform.scale(player_hand_pic1, (100, 150))
+    player_hand_pic2 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[1].getstr() + '.png')
+    player_hand_pic2 = pygame.transform.scale(player_hand_pic2, (100, 150))
+    player_hand_pic3 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[2].getstr() + '.png')
+    player_hand_pic3 = pygame.transform.scale(player_hand_pic3, (100, 150))
+    player_hand_pic4 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[3].getstr() + '.png')
+    player_hand_pic4 = pygame.transform.scale(player_hand_pic4, (100, 150))
+    player_hand_pic5 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[4].getstr() + '.png')
+    player_hand_pic5 = pygame.transform.scale(player_hand_pic5, (100, 150))
 
+    # Load images of player hand
+    screen.blit(player_hand_pic1, (200, 550))
+    screen.blit(player_hand_pic2, (330, 550))
+    screen.blit(player_hand_pic3, (460, 550))
+    screen.blit(player_hand_pic4, (590, 550))
+    screen.blit(player_hand_pic5, (720, 550))
+    pygame.display.update()
 
-def quit_game():
-    pygame.quit()
-    quit()
+    # Load images of working cards and standby decks
+    screen.blit(wrkcard1_pic, (375, 250))  # working card 1
+    screen.blit(wrkcard2_pic, (525, 250))  # working card 2
+    screen.blit(back_of_card, (120, 250))  # standby deck 1
+    screen.blit(back_of_card, (780, 250))  # standby deck 2
 
-
-def player_gameplay():
+    pygame.display.update()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            quit_game()
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_1:
-                if (player_hand[0].value == (deck.wrkcard1.value + 1)) or (player_hand[0].value == (deck.wrkcard1.value - 1)) or (player_hand[0].value == 13 and (deck.wrkcard1.value == 1)) or (player_hand[0].value == 1 and (deck.wrkcard1.value == 13)):
-                    deck.standby1.append(deck.wrkcard1)
-                    deck.wrkcard1 = player_hand[0]
-                    player_hand.pop(0)
-                    if len(deck.player_cards) > 0:
-                        player_hand.append(deck.player_cards[0])
-                        deck.player_cards.pop(0)
-                    break
-                elif (player_hand[0].value == (deck.wrkcard2.value + 1)) or (player_hand[0].value == (deck.wrkcard2.value - 1)) or (player_hand[0].value == 13 and (deck.wrkcard2.value == 1)) or (player_hand[0].value == 1 and (deck.wrkcard2.value == 13)):
-                    deck.standby2.append(deck.wrkcard2)
-                    deck.wrkcard2 = player_hand[0]
-                    player_hand.pop(0)
-                    if len(deck.player_cards) > 0:
-                        player_hand.append(deck.player_cards[0])
-                        deck.player_cards.pop(0)
-                    break
-                else:
-                    print('Error - this card cannot be played')
-            elif event.key == pygame.K_2:
-                if (player_hand[1].value == (deck.wrkcard1.value + 1)) or (player_hand[1].value == (deck.wrkcard1.value - 1)) or (player_hand[1].value == 13 and (deck.wrkcard1.value == 1)) or (player_hand[1].value == 1 and (deck.wrkcard1.value == 13)):
-                    deck.standby1.append(deck.wrkcard1)
-                    deck.wrkcard1 = player_hand[1]
-                    player_hand.pop(1)
-                    if len(deck.player_cards) > 0:
-                        player_hand.append(deck.player_cards[0])
-                        deck.player_cards.pop(0)
-                    break
-                elif (player_hand[1].value == (deck.wrkcard2.value + 1)) or (player_hand[1].value == (deck.wrkcard2.value - 1)) or (player_hand[1].value == 13 and (deck.wrkcard2.value == 1)) or (player_hand[1].value == 1 and (deck.wrkcard2.value == 13)):
-                    deck.standby2.append(deck.wrkcard2)
-                    deck.wrkcard2 = player_hand[1]
-                    player_hand.pop(1)
-                    if len(deck.player_cards) > 0:
-                        player_hand.append(deck.player_cards[0])
-                        deck.player_cards.pop(0)
-                    break
-                else:
-                    print('Error - this card cannot be played')
-            elif event.key == pygame.K_3:
-                if (player_hand[2].value == (deck.wrkcard1.value + 1)) or (player_hand[2].value == (deck.wrkcard1.value - 1)) or (player_hand[2].value == 13 and (deck.wrkcard1.value == 1)) or (player_hand[2].value == 1 and (deck.wrkcard1.value == 13)):
-                    deck.standby1.append(deck.wrkcard1)
-                    deck.wrkcard1 = player_hand[2]
-                    player_hand.pop(2)
-                    if len(deck.player_cards) > 0:
-                        player_hand.append(deck.player_cards[0])
-                        deck.player_cards.pop(0)
-                    break
-                elif (player_hand[2].value == (deck.wrkcard2.value + 1)) or (player_hand[2].value == (deck.wrkcard2.value - 1)) or (player_hand[2].value == 13 and (deck.wrkcard2.value == 1)) or (player_hand[2].value == 1 and (deck.wrkcard2.value == 13)):
-                    deck.standby2.append(deck.wrkcard2)
-                    deck.wrkcard2 = player_hand[2]
-                    player_hand.pop(2)
-                    if len(deck.player_cards) > 0:
-                        player_hand.append(deck.player_cards[0])
-                        deck.player_cards.pop(0)
-                    break
-                else:
-                    print('Error - this card cannot be played')
-            elif event.key == pygame.K_4:
-                if (player_hand[3].value == (deck.wrkcard1.value + 1)) or (player_hand[3].value == (deck.wrkcard1.value - 1)) or (player_hand[3].value == 13 and (deck.wrkcard1.value == 1)) or (player_hand[3].value == 1 and (deck.wrkcard1.value == 13)):
-                    deck.standby1.append(deck.wrkcard1)
-                    deck.wrkcard1 = player_hand[3]
-                    player_hand.pop(3)
-                    if len(deck.player_cards) > 0:
-                        player_hand.append(deck.player_cards[0])
-                        deck.player_cards.pop(0)
-                    break
-                elif (player_hand[3].value == (deck.wrkcard2.value + 1)) or (player_hand[3].value == (deck.wrkcard2.value - 1)) or (player_hand[3].value == 13 and (deck.wrkcard2.value == 1)) or (player_hand[3].value == 1 and (deck.wrkcard2.value == 13)):
-                    deck.standby2.append(deck.wrkcard2)
-                    deck.wrkcard2 = player_hand[3]
-                    player_hand.pop(3)
-                    if len(deck.player_cards) > 0:
-                        player_hand.append(deck.player_cards[0])
-                        deck.player_cards.pop(0)
-                    break
-                else:
-                    print('Error - this card cannot be played')
-            elif event.key == pygame.K_5:
-                if (player_hand[4].value == (deck.wrkcard1.value + 1)) or (player_hand[0].value == (deck.wrkcard1.value - 1)) or (player_hand[4].value == 13 and (deck.wrkcard1.value == 1)) or (player_hand[4].value == 1 and (deck.wrkcard1.value == 13)):
-                    deck.standby1.append(deck.wrkcard1)
-                    deck.wrkcard1 = player_hand[4]
-                    player_hand.pop(4)
-                    if len(deck.player_cards) > 0:
-                        player_hand.append(deck.player_cards[0])
-                        deck.player_cards.pop(0)
-                    break
-                elif (player_hand[4].value == (deck.wrkcard2.value + 1)) or (player_hand[4].value == (deck.wrkcard2.value - 1)) or (player_hand[4].value == 13 and (deck.wrkcard2.value == 1)) or (player_hand[4].value == 1 and (deck.wrkcard2.value == 13)):
-                    deck.standby2.append(deck.wrkcard2)
-                    deck.wrkcard2 = player_hand[4]
-                    player_hand.pop(4)
-                    if len(deck.player_cards) > 0:
-                        player_hand.append(deck.player_cards[0])
-                        deck.player_cards.pop(0)
-                    break
-                else:
-                    print('Error - this card cannot be played')
-            elif event.key == pygame.K_6:
-                deck.wrkcard1 = deck.standby1[0]
-                card = deck.standby1.pop(0)
-                deck.standby1.append(card)
+            running = False
 
-                deck.wrkcard2 = deck.standby2[0]
-                card = deck.standby2.pop(0)
-                deck.standby2.append(card)
+# loop for game play
+    def computer_gameplay():
+        count = 0
+        count_player = 0
+        displayStatus(deck, computer_hand)
+        while len(computer_hand) > 0 and (count < len(computer_hand)):
+            item = computer_hand[count]
+            count = count + 1
+            length_comp = len(computer_hand)
+            if (item.value == (deck.wrkcard1.value + 1)) or (item.value == (deck.wrkcard1.value - 1)) or (item.value == 13 and (deck.wrkcard1.value == 1)) or (item.value == 1 and (deck.wrkcard1.value == 13)):
+                deck.standby1.append(deck.wrkcard1)  # keeps deck.wrkcard1 at holding one thing
+                deck.wrkcard1 = item
+                wrkcard1_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard1.getstr() + '.png')
+                wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
+                pygame.display.update()
+                computer_hand.pop(count-1)
+                if len(deck.computer_cards) > 0:
+                    computer_hand.append(deck.computer_cards[0])
+                    deck.computer_cards.pop(0)
+                    count = 0
+                else:
+                    count = 0
+                print('Replace working card 1')
+                displayStatus(deck, computer_hand)
+                break
+            elif (item.value == (deck.wrkcard2.value + 1)) or (item.value == (deck.wrkcard2.value - 1)) or (item.value == 13 and (deck.wrkcard2.value == 1)) or (item.value == 1 and (deck.wrkcard2.value == 13)):
+                deck.standby2.append(deck.wrkcard2)
+                deck.wrkcard2 = item
+                wrkcard2_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard2.getstr() + '.png')
+                wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
+                pygame.display.update()
+                computer_hand.pop(count-1)
+                if len(deck.computer_cards) > 0:
+                    computer_hand.append(deck.computer_cards[0])
+                    deck.computer_cards.pop(0)
+                    count = 0
+                else:
+                    count = 0
+                print('Replace working card 2')
+                displayStatus(deck, computer_hand)
+                break
+            elif count == length_comp:
+                count = 0
                 break
             else:
-                print('Invalid key - try again!')
+                pass
 
 
-game_over = False
-while not game_over:
-    computer_gameplay()
-    player_gameplay()
-    if len(deck.computer_cards) == 0 and len(computer_hand) == 0:
-        print('Computer has won the game!')
-        game_over = True
-    elif len(deck.player_cards) == 0 and len(player_hand) == 0:
-        print('Player has won the game!')
-        game_over = True
-    else:
-        game_over = False
+    def quit_game():
+        pygame.quit()
+        quit()
+
+
+    def player_gameplay():
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                quit_game()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_1:
+                    if (player_hand[0].value == (deck.wrkcard1.value + 1)) or (player_hand[0].value == (deck.wrkcard1.value - 1)) or (player_hand[0].value == 13 and (deck.wrkcard1.value == 1)) or (player_hand[0].value == 1 and (deck.wrkcard1.value == 13)):
+                        deck.standby1.append(deck.wrkcard1)
+                        deck.wrkcard1 = player_hand[0]
+                        player_hand.pop(0)
+                        if len(deck.player_cards) > 0:
+                            player_hand.append(deck.player_cards[0])
+                            deck.player_cards.pop(0)
+                        break
+                    elif (player_hand[0].value == (deck.wrkcard2.value + 1)) or (player_hand[0].value == (deck.wrkcard2.value - 1)) or (player_hand[0].value == 13 and (deck.wrkcard2.value == 1)) or (player_hand[0].value == 1 and (deck.wrkcard2.value == 13)):
+                        deck.standby2.append(deck.wrkcard2)
+                        deck.wrkcard2 = player_hand[0]
+                        player_hand.pop(0)
+                        if len(deck.player_cards) > 0:
+                            player_hand.append(deck.player_cards[0])
+                            deck.player_cards.pop(0)
+                        break
+                    else:
+                        print('Error - this card cannot be played')
+                elif event.key == pygame.K_2:
+                    if (player_hand[1].value == (deck.wrkcard1.value + 1)) or (player_hand[1].value == (deck.wrkcard1.value - 1)) or (player_hand[1].value == 13 and (deck.wrkcard1.value == 1)) or (player_hand[1].value == 1 and (deck.wrkcard1.value == 13)):
+                        deck.standby1.append(deck.wrkcard1)
+                        deck.wrkcard1 = player_hand[1]
+                        player_hand.pop(1)
+                        if len(deck.player_cards) > 0:
+                            player_hand.append(deck.player_cards[0])
+                            deck.player_cards.pop(0)
+                        break
+                    elif (player_hand[1].value == (deck.wrkcard2.value + 1)) or (player_hand[1].value == (deck.wrkcard2.value - 1)) or (player_hand[1].value == 13 and (deck.wrkcard2.value == 1)) or (player_hand[1].value == 1 and (deck.wrkcard2.value == 13)):
+                        deck.standby2.append(deck.wrkcard2)
+                        deck.wrkcard2 = player_hand[1]
+                        player_hand.pop(1)
+                        if len(deck.player_cards) > 0:
+                            player_hand.append(deck.player_cards[0])
+                            deck.player_cards.pop(0)
+                        break
+                    else:
+                        print('Error - this card cannot be played')
+                elif event.key == pygame.K_3:
+                    if (player_hand[2].value == (deck.wrkcard1.value + 1)) or (player_hand[2].value == (deck.wrkcard1.value - 1)) or (player_hand[2].value == 13 and (deck.wrkcard1.value == 1)) or (player_hand[2].value == 1 and (deck.wrkcard1.value == 13)):
+                        deck.standby1.append(deck.wrkcard1)
+                        deck.wrkcard1 = player_hand[2]
+                        player_hand.pop(2)
+                        if len(deck.player_cards) > 0:
+                            player_hand.append(deck.player_cards[0])
+                            deck.player_cards.pop(0)
+                        break
+                    elif (player_hand[2].value == (deck.wrkcard2.value + 1)) or (player_hand[2].value == (deck.wrkcard2.value - 1)) or (player_hand[2].value == 13 and (deck.wrkcard2.value == 1)) or (player_hand[2].value == 1 and (deck.wrkcard2.value == 13)):
+                        deck.standby2.append(deck.wrkcard2)
+                        deck.wrkcard2 = player_hand[2]
+                        player_hand.pop(2)
+                        if len(deck.player_cards) > 0:
+                            player_hand.append(deck.player_cards[0])
+                            deck.player_cards.pop(0)
+                        break
+                    else:
+                        print('Error - this card cannot be played')
+                elif event.key == pygame.K_4:
+                    if (player_hand[3].value == (deck.wrkcard1.value + 1)) or (player_hand[3].value == (deck.wrkcard1.value - 1)) or (player_hand[3].value == 13 and (deck.wrkcard1.value == 1)) or (player_hand[3].value == 1 and (deck.wrkcard1.value == 13)):
+                        deck.standby1.append(deck.wrkcard1)
+                        deck.wrkcard1 = player_hand[3]
+                        player_hand.pop(3)
+                        if len(deck.player_cards) > 0:
+                            player_hand.append(deck.player_cards[0])
+                            deck.player_cards.pop(0)
+                        break
+                    elif (player_hand[3].value == (deck.wrkcard2.value + 1)) or (player_hand[3].value == (deck.wrkcard2.value - 1)) or (player_hand[3].value == 13 and (deck.wrkcard2.value == 1)) or (player_hand[3].value == 1 and (deck.wrkcard2.value == 13)):
+                        deck.standby2.append(deck.wrkcard2)
+                        deck.wrkcard2 = player_hand[3]
+                        player_hand.pop(3)
+                        if len(deck.player_cards) > 0:
+                            player_hand.append(deck.player_cards[0])
+                            deck.player_cards.pop(0)
+                        break
+                    else:
+                        print('Error - this card cannot be played')
+                elif event.key == pygame.K_5:
+                    if (player_hand[4].value == (deck.wrkcard1.value + 1)) or (player_hand[0].value == (deck.wrkcard1.value - 1)) or (player_hand[4].value == 13 and (deck.wrkcard1.value == 1)) or (player_hand[4].value == 1 and (deck.wrkcard1.value == 13)):
+                        deck.standby1.append(deck.wrkcard1)
+                        deck.wrkcard1 = player_hand[4]
+                        player_hand.pop(4)
+                        if len(deck.player_cards) > 0:
+                            player_hand.append(deck.player_cards[0])
+                            deck.player_cards.pop(0)
+                        break
+                    elif (player_hand[4].value == (deck.wrkcard2.value + 1)) or (player_hand[4].value == (deck.wrkcard2.value - 1)) or (player_hand[4].value == 13 and (deck.wrkcard2.value == 1)) or (player_hand[4].value == 1 and (deck.wrkcard2.value == 13)):
+                        deck.standby2.append(deck.wrkcard2)
+                        deck.wrkcard2 = player_hand[4]
+                        player_hand.pop(4)
+                        if len(deck.player_cards) > 0:
+                            player_hand.append(deck.player_cards[0])
+                            deck.player_cards.pop(0)
+                        break
+                    else:
+                        print('Error - this card cannot be played')
+                elif event.key == pygame.K_6:
+                    deck.wrkcard1 = deck.standby1[0]
+                    card = deck.standby1.pop(0)
+                    deck.standby1.append(card)
+                    wrkcard1_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard1.getstr() + '.png')
+                    wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
+                    print('Flip')
+                    deck.wrkcard2 = deck.standby2[0]
+                    card = deck.standby2.pop(0)
+                    deck.standby2.append(card)
+                    wrkcard2_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard2.getstr() + '.png')
+                    wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
+                    pygame.display.update()
+                    break
+                else:
+                    print('Invalid key - try again!')
+
+
+    game_over = False
+    while not game_over:
+        computer_gameplay()
+        player_gameplay()
+        if len(deck.computer_cards) == 0 and len(computer_hand) == 0:
+            print('Computer has won the game!')
+            game_over = True
+        elif len(deck.player_cards) == 0 and len(player_hand) == 0:
+            print('Player has won the game!')
+            game_over = True
+        else:
+            game_over = False
