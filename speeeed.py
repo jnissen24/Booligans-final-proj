@@ -124,6 +124,8 @@ deck = Deck()
 #print([x.show() for x in deck.computer_cards])
 #print([x.show() for x in deck.player_cards])
 
+pygame.init()
+
 # Margins
 margin_left = 250
 margin_top = 150
@@ -138,7 +140,10 @@ green = (0, 255, 0)
 red = (255, 0, 0)
 blue = (0, 0, 255)
 
-pygame.init()
+#fonts
+small_font = pygame.font.Font(None, 32)
+large_font = pygame.font.Font(None, 50)
+
 screen = pygame.display.set_mode((width, height))
 screen.fill(gray)
 pygame.display.set_caption("Speed!")
@@ -255,7 +260,12 @@ while running:
 
                         break
                     else:
-                        print('Error - this card cannot be played')
+                        pygame.draw.rect(screen, white, [270, 40, 255, 90])
+                        error_text = small_font.render("Error - this card cannot be played", True, black)
+                        error_text_rect = error_text.get_rect()
+                        error_text_rect.center = (width // 2, 85)
+                        screen.blit(error_text, error_text_rect)
+                        pygame.display.update()
                 elif event.key == pygame.K_2:
                     print("number 2")
                     if (player_hand[1].value == (deck.wrkcard1.value + 1)) or (player_hand[1].value == (deck.wrkcard1.value - 1)) or (player_hand[1].value == 13 and (deck.wrkcard1.value == 1)) or (player_hand[1].value == 1 and (deck.wrkcard1.value == 13)):
@@ -277,7 +287,12 @@ while running:
 
                         break
                     else:
-                        print('Error - this card cannot be played')
+                        pygame.draw.rect(screen, white, [270, 40, 255, 90])
+                        error_text = small_font.render("Error - this card cannot be played", True, black)
+                        error_text_rect = error_text.get_rect()
+                        error_text_rect.center = (width // 2, 85)
+                        screen.blit(error_text, error_text_rect)
+                        pygame.display.update()
                 elif event.key == pygame.K_3:
                     print("number 3")
                     if (player_hand[2].value == (deck.wrkcard1.value + 1)) or (player_hand[2].value == (deck.wrkcard1.value - 1)) or (player_hand[2].value == 13 and (deck.wrkcard1.value == 1)) or (player_hand[2].value == 1 and (deck.wrkcard1.value == 13)):
@@ -299,7 +314,12 @@ while running:
 
                         break
                     else:
-                        print('Error - this card cannot be played')
+                        pygame.draw.rect(screen, white, [270, 40, 255, 90])
+                        error_text = small_font.render("Error - this card cannot be played", True, black)
+                        error_text_rect = error_text.get_rect()
+                        error_text_rect.center = (width // 2, 85)
+                        screen.blit(error_text, error_text_rect)
+                        pygame.display.update()
                 elif event.key == pygame.K_4:
                     print("number 4")
                     if (player_hand[3].value == (deck.wrkcard1.value + 1)) or (player_hand[3].value == (deck.wrkcard1.value - 1)) or (player_hand[3].value == 13 and (deck.wrkcard1.value == 1)) or (player_hand[3].value == 1 and (deck.wrkcard1.value == 13)):
@@ -321,7 +341,12 @@ while running:
 
                         break
                     else:
-                        print('Error - this card cannot be played')
+                        pygame.draw.rect(screen, white, [270, 40, 255, 90])
+                        error_text = small_font.render("Error - this card cannot be played", True, black)
+                        error_text_rect = error_text.get_rect()
+                        error_text_rect.center = (width // 2, 85)
+                        screen.blit(error_text, error_text_rect)
+                        pygame.display.update()
                 elif event.key == pygame.K_5:
                     print("number 5")
                     if (player_hand[4].value == (deck.wrkcard1.value + 1)) or (player_hand[0].value == (deck.wrkcard1.value - 1)) or (player_hand[4].value == 13 and (deck.wrkcard1.value == 1)) or (player_hand[4].value == 1 and (deck.wrkcard1.value == 13)):
@@ -341,7 +366,12 @@ while running:
                             deck.player_cards.pop(0)
                         break
                     else:
-                        print('Error - this card cannot be played')
+                        pygame.draw.rect(screen, white, [270, 40, 255, 90])
+                        error_text = small_font.render("Error - this card cannot be played", True, black)
+                        error_text_rect = error_text.get_rect()
+                        error_text_rect.center = (width // 2, 85)
+                        screen.blit(error_text, error_text_rect)
+                        pygame.display.update()
                 elif event.key == pygame.K_6:
                     print("number 6")
                     deck.wrkcard1 = deck.standby1[0]
@@ -353,7 +383,12 @@ while running:
                     deck.standby2.append(card)
                     break
                 else:
-                    print('Invalid key - try again!')
+                    pygame.draw.rect(screen, white, [270, 40, 255, 90])
+                    error_text = small_font.render("Invalid key - try again!" , True, black)
+                    error_text_rect = error_text.get_rect()
+                    error_text_rect.center = (width // 2, 85)
+                    screen.blit(error_text, error_text_rect)
+                    pygame.display.update()
 
 
     game_over = False
@@ -481,15 +516,29 @@ while running:
         player_gameplay()
 
         if len(deck.computer_cards) == 0 and len(computer_hand) == 0:
+<<<<<<< Updated upstream
             print('Computer has won the game!')
             screen.fill(gray)
 
             pygame.display.update()
             pygame.time.wait(5000)
+=======
+            pygame.draw.rect(screen, white, [270, 40, 255, 90])
+            final_text = small_font.render("Computer has won the game!", True, black)
+            final_text_rect = final_text.get_rect()
+            final_text_rect.center = (width // 2, 85)
+            screen.blit(final_text, final_text_rect)
+            pygame.display.update()
+>>>>>>> Stashed changes
             game_over = True
             running = False
         elif len(deck.player_cards) == 0 and len(player_hand) == 0:
-            print('Player has won the game!')
+            pygame.draw.rect(screen, white, [270, 40, 255, 90])
+            final_text = small_font.render("Player has won the game!", True, black)
+            final_text_rect = final_text.get_rect()
+            final_text_rect.center = (width // 2, 85)
+            screen.blit(final_text, final_text_rect)
+            pygame.display.update()
             game_over = True
             running = False
         else:
