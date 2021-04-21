@@ -168,44 +168,13 @@ print(deck.wrkcard2.show())
 import time
 running = True
 while running:
-    wrkcard1_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard1.getstr() + '.png')
-    wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
-    wrkcard2_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard2.getstr() + '.png')
-    wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
-
-    player_hand_pic1 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[0].getstr() + '.png')
-    player_hand_pic1 = pygame.transform.scale(player_hand_pic1, (100, 150))
-    player_hand_pic2 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[1].getstr() + '.png')
-    player_hand_pic2 = pygame.transform.scale(player_hand_pic2, (100, 150))
-    player_hand_pic3 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[2].getstr() + '.png')
-    player_hand_pic3 = pygame.transform.scale(player_hand_pic3, (100, 150))
-    player_hand_pic4 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[3].getstr() + '.png')
-    player_hand_pic4 = pygame.transform.scale(player_hand_pic4, (100, 150))
-    player_hand_pic5 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[4].getstr() + '.png')
-    player_hand_pic5 = pygame.transform.scale(player_hand_pic5, (100, 150))
-
-    # Load images of player hand
-    screen.blit(player_hand_pic1, (200, 550))
-    screen.blit(player_hand_pic2, (330, 550))
-    screen.blit(player_hand_pic3, (460, 550))
-    screen.blit(player_hand_pic4, (590, 550))
-    screen.blit(player_hand_pic5, (720, 550))
-    pygame.display.update()
-
-    # Load images of working cards and standby decks
-    screen.blit(wrkcard1_pic, (375, 250))  # working card 1
-    screen.blit(wrkcard2_pic, (525, 250))  # working card 2
-    screen.blit(back_of_card, (120, 250))  # standby deck 1
-    screen.blit(back_of_card, (780, 250))  # standby deck 2
-
-    pygame.display.update()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
 # loop for game play
     def computer_gameplay():
-        pygame.time.wait(1000)
+        pygame.time.wait(3000)
         count = 0
         count_player = 0
         displayStatus(deck, computer_hand)
@@ -389,36 +358,123 @@ while running:
 
     game_over = False
     while not game_over:
-        screen.fill(gray)
-        wrkcard1_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard1.getstr() + '.png')
-        wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
-        wrkcard2_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard2.getstr() + '.png')
-        wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
 
-        player_hand_pic1 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[0].getstr() + '.png')
-        player_hand_pic1 = pygame.transform.scale(player_hand_pic1, (100, 150))
-        player_hand_pic2 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[1].getstr() + '.png')
-        player_hand_pic2 = pygame.transform.scale(player_hand_pic2, (100, 150))
-        player_hand_pic3 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[2].getstr() + '.png')
-        player_hand_pic3 = pygame.transform.scale(player_hand_pic3, (100, 150))
-        player_hand_pic4 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[3].getstr() + '.png')
-        player_hand_pic4 = pygame.transform.scale(player_hand_pic4, (100, 150))
-        player_hand_pic5 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[4].getstr() + '.png')
-        player_hand_pic5 = pygame.transform.scale(player_hand_pic5, (100, 150))
+        if len(player_hand) == 4:
+            screen.fill(gray)
+            wrkcard1_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard1.getstr() + '.png')
+            wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
+            wrkcard2_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard2.getstr() + '.png')
+            wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
 
-        # Load images of player hand
-        screen.blit(player_hand_pic1, (200, 550))
-        screen.blit(player_hand_pic2, (330, 550))
-        screen.blit(player_hand_pic3, (460, 550))
-        screen.blit(player_hand_pic4, (590, 550))
-        screen.blit(player_hand_pic5, (720, 550))
+            player_hand_pic1 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[0].getstr() + '.png')
+            player_hand_pic1 = pygame.transform.scale(player_hand_pic1, (100, 150))
+            player_hand_pic2 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[1].getstr() + '.png')
+            player_hand_pic2 = pygame.transform.scale(player_hand_pic2, (100, 150))
+            player_hand_pic3 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[2].getstr() + '.png')
+            player_hand_pic3 = pygame.transform.scale(player_hand_pic3, (100, 150))
+            player_hand_pic4 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[3].getstr() + '.png')
+            player_hand_pic4 = pygame.transform.scale(player_hand_pic4, (100, 150))
+            screen.blit(player_hand_pic1, (200, 550))
+            screen.blit(player_hand_pic2, (330, 550))
+            screen.blit(player_hand_pic3, (460, 550))
+            screen.blit(player_hand_pic4, (590, 550))
+
+            screen.blit(wrkcard1_pic, (375, 250))  # working card 1
+            screen.blit(wrkcard2_pic, (525, 250))  # working card 2
+            screen.blit(back_of_card, (120, 250))  # standby deck 1
+            screen.blit(back_of_card, (780, 250))  # standby deck 2
+            pygame.display.update()
+
+        elif len(player_hand) == 3:
+            screen.fill(gray)
+            wrkcard1_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard1.getstr() + '.png')
+            wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
+            wrkcard2_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard2.getstr() + '.png')
+            wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
+
+            player_hand_pic1 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[0].getstr() + '.png')
+            player_hand_pic1 = pygame.transform.scale(player_hand_pic1, (100, 150))
+            player_hand_pic2 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[1].getstr() + '.png')
+            player_hand_pic2 = pygame.transform.scale(player_hand_pic2, (100, 150))
+            player_hand_pic3 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[2].getstr() + '.png')
+            player_hand_pic3 = pygame.transform.scale(player_hand_pic3, (100, 150))
+            screen.blit(player_hand_pic1, (200, 550))
+            screen.blit(player_hand_pic2, (330, 550))
+            screen.blit(player_hand_pic3, (460, 550))
+
+            screen.blit(wrkcard1_pic, (375, 250))  # working card 1
+            screen.blit(wrkcard2_pic, (525, 250))  # working card 2
+            screen.blit(back_of_card, (120, 250))  # standby deck 1
+            screen.blit(back_of_card, (780, 250))  # standby deck 2
+            pygame.display.update()
+        elif len(player_hand) == 2:
+            screen.fill(gray)
+            wrkcard1_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard1.getstr() + '.png')
+            wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
+            wrkcard2_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard2.getstr() + '.png')
+            wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
+
+            player_hand_pic1 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[0].getstr() + '.png')
+            player_hand_pic1 = pygame.transform.scale(player_hand_pic1, (100, 150))
+            player_hand_pic2 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[1].getstr() + '.png')
+            player_hand_pic2 = pygame.transform.scale(player_hand_pic2, (100, 150))
+            screen.blit(player_hand_pic1, (200, 550))
+            screen.blit(player_hand_pic2, (330, 550))
+
+            screen.blit(wrkcard1_pic, (375, 250))  # working card 1
+            screen.blit(wrkcard2_pic, (525, 250))  # working card 2
+            screen.blit(back_of_card, (120, 250))  # standby deck 1
+            screen.blit(back_of_card, (780, 250))  # standby deck 2
+            pygame.display.update()
+
+        elif len(player_hand) == 1:
+            screen.fill(gray)
+            wrkcard1_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard1.getstr() + '.png')
+            wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
+            wrkcard2_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard2.getstr() + '.png')
+            wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
+
+            player_hand_pic1 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[0].getstr() + '.png')
+            player_hand_pic1 = pygame.transform.scale(player_hand_pic1, (100, 150))
+            screen.blit(player_hand_pic1, (200, 550))
+
+            screen.blit(wrkcard1_pic, (375, 250))  # working card 1
+            screen.blit(wrkcard2_pic, (525, 250))  # working card 2
+            screen.blit(back_of_card, (120, 250))  # standby deck 1
+            screen.blit(back_of_card, (780, 250))  # standby deck 2
+            pygame.display.update()
+
+        elif len(player_hand) > 4:
+            screen.fill(gray)
+            wrkcard1_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard1.getstr() + '.png')
+            wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
+            wrkcard2_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard2.getstr() + '.png')
+            wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
+
+            player_hand_pic1 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[0].getstr() + '.png')
+            player_hand_pic1 = pygame.transform.scale(player_hand_pic1, (100, 150))
+            player_hand_pic2 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[1].getstr() + '.png')
+            player_hand_pic2 = pygame.transform.scale(player_hand_pic2, (100, 150))
+            player_hand_pic3 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[2].getstr() + '.png')
+            player_hand_pic3 = pygame.transform.scale(player_hand_pic3, (100, 150))
+            player_hand_pic4 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[3].getstr() + '.png')
+            player_hand_pic4 = pygame.transform.scale(player_hand_pic4, (100, 150))
+            player_hand_pic5 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[4].getstr() + '.png')
+            player_hand_pic5 = pygame.transform.scale(player_hand_pic5, (100, 150))
+
+            # Load images of player hand
+            screen.blit(player_hand_pic1, (200, 550))
+            screen.blit(player_hand_pic2, (330, 550))
+            screen.blit(player_hand_pic3, (460, 550))
+            screen.blit(player_hand_pic4, (590, 550))
+            screen.blit(player_hand_pic5, (720, 550))
 
         # Load images of working cards and standby decks
-        screen.blit(wrkcard1_pic, (375, 250))  # working card 1
-        screen.blit(wrkcard2_pic, (525, 250))  # working card 2
-        screen.blit(back_of_card, (120, 250))  # standby deck 1
-        screen.blit(back_of_card, (780, 250))  # standby deck 2
-        pygame.display.update()
+            screen.blit(wrkcard1_pic, (375, 250))  # working card 1
+            screen.blit(wrkcard2_pic, (525, 250))  # working card 2
+            screen.blit(back_of_card, (120, 250))  # standby deck 1
+            screen.blit(back_of_card, (780, 250))  # standby deck 2
+            pygame.display.update()
 
 
         computer_gameplay()
@@ -426,10 +482,16 @@ while running:
 
         if len(deck.computer_cards) == 0 and len(computer_hand) == 0:
             print('Computer has won the game!')
+            screen.fill(gray)
+
+            pygame.display.update()
+            pygame.time.wait(5000)
             game_over = True
+            running = False
         elif len(deck.player_cards) == 0 and len(player_hand) == 0:
             print('Player has won the game!')
             game_over = True
+            running = False
         else:
             game_over = False
 ##
