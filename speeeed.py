@@ -30,6 +30,8 @@ target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.
 # are shuffled and used to draw from once more
 
 import random
+import pygame
+import keyboard
 
 
 # creates Card class
@@ -230,6 +232,7 @@ def displayStatus(deck, computer_hand):
 
 ### ACTUAL GAME STARTS ###
 deck = Deck()
+
 # print statement for wrkcard since only has one object
 #print(deck.wrkcard1.show())
 #print(deck.wrkcard2.show())
@@ -237,6 +240,32 @@ deck = Deck()
 #print([x.show() for x in deck.computer_cards])
 #print([x.show() for x in deck.player_cards])
 
+while True:
+    if keyboard.read.key() == "g":
+        print("You pressed one")
+        break
+
+# Margins
+margin_left = 250
+margin_top = 150
+# window size
+width = 1000
+height = 700
+# colors
+black = (0, 0, 0)
+white = (255, 255, 255)
+gray = (110, 110, 110)
+green = (0, 255, 0)
+red = (255, 0, 0)
+blue = (0, 0, 255)
+
+pygame.init()
+screen = pygame.display.set_mode((width, height))
+screen.fill(gray)
+pygame.display.set_caption("Speed!")
+
+back_of_card = pygame.image.load('./Playing Cards/PNG-cards-1.3/gray_back.png')
+back_of_card = pygame.transform.scale(back_of_card, (100, 150))
 # take first 5 cards of each player's stack to be in active hand
 computer_hand = []
 player_hand = []
