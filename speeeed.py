@@ -326,15 +326,10 @@ while running:
 
                         break
                     else:
-                        pygame.draw.rect(screen, white, [270, 40, 255, 90])
-                        error_text = small_font.render("Error - this card cannot be played", True, black)
-                        error_text_rect = error_text.get_rect()
-                        error_text_rect.center = (width // 2, 85)
-                        screen.blit(error_text, error_text_rect)
-                        pygame.display.update()
+                        print('Error - this card cannot be played')
                 elif event.key == pygame.K_5:
                     print("number 5")
-                    if (player_hand[4].value == (deck.wrkcard1.value + 1)) or (player_hand[0].value == (deck.wrkcard1.value - 1)) or (player_hand[4].value == 13 and (deck.wrkcard1.value == 1)) or (player_hand[4].value == 1 and (deck.wrkcard1.value == 13)):
+                    if (player_hand[4].value == (deck.wrkcard1.value + 1)) or (player_hand[4].value == (deck.wrkcard1.value - 1)) or (player_hand[4].value == 13 and (deck.wrkcard1.value == 1)) or (player_hand[4].value == 1 and (deck.wrkcard1.value == 13)):
                         deck.standby1.append(deck.wrkcard1)
                         deck.wrkcard1 = player_hand[4]
                         player_hand.pop(4)
