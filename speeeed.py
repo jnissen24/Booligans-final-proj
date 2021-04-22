@@ -32,8 +32,9 @@ target="_parent"><img src="https://colab.research.google.com/assets/colab-badge.
 import random
 import pygame
 
-# creates Card class
+# creates Card class, with suit and value
 
+# Rhian wrote most of the original code for this class, while Suji did the debugging and testing of it
 class Card:
     def __init__(self, suit, val):
         self.suit = suit
@@ -46,7 +47,7 @@ class Card:
         str = '{}{}'.format(self.value, self.suit)
         return str
 
-
+## Once again, Rhian did most of the original code writing, and Suji debugged/tested/fixed problems
 # creates Deck class
 class Deck:
     def __init__(self):
@@ -88,13 +89,13 @@ class Deck:
         self.wrkcard1 = self.cards[50]
         self.wrkcard2 = self.cards[51]
 
+    # To help monitor hands as the game goes along
 def showDeck(mydeck):
     mystr = ''
     for c in mydeck:
         mystr = mystr + ',' + c.getstr()
-    print(mystr)
 
-
+    # Function that displays the status of each card and where it is located on the board
 def displayStatus(deck, computer_hand):
     print('Standby1 : ')
     showDeck(deck.standby1)
@@ -115,15 +116,9 @@ def displayStatus(deck, computer_hand):
     showDeck(deck.computer_cards)
 
 ### ACTUAL GAME STARTS ###
+
+## Jacques did most of the initial display set up stuff here
 deck = Deck()
-
-# print statement for wrkcard since only has one object
-#print(deck.wrkcard1.show())
-#print(deck.wrkcard2.show())
-# print statement for all other piles
-#print([x.show() for x in deck.computer_cards])
-#print([x.show() for x in deck.player_cards])
-
 pygame.init()
 
 # Margins
@@ -140,23 +135,37 @@ green = (0, 255, 0)
 red = (255, 0, 0)
 blue = (0, 0, 255)
 
-#fonts
-small_font = pygame.font.Font(None, 32)
-large_font = pygame.font.Font(None, 50)
-
 screen = pygame.display.set_mode((width, height))
 screen.fill(gray)
 pygame.display.set_caption("Speed!")
 
+# First screen shows the instructions
+instructions = pygame.image.load('./Playing Cards/PNG-cards-1.3/instructions 2.0.png')
+instructions = pygame.transform.scale(instructions, (600, 600))
+screen.blit(instructions, (250, 50))
+pygame.display.update()
+
+# Wait until user presses 'Enter' before continuing
+not_enter = True
+while not_enter:
+    for event in pygame.event.get():
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RETURN:
+                screen.fill(gray)
+                not_enter = False
+
+# Load back_of_card image
 back_of_card = pygame.image.load('./Playing Cards/PNG-cards-1.3/gray_back.png')
 back_of_card = pygame.transform.scale(back_of_card, (100, 150))
+
 # take first 5 cards of each player's stack to be in active hand
 computer_hand = []
 player_hand = []
 for i in range(0, 5):
     computer_hand.append(deck.computer_cards[i])
-    player_hand.append(deck.player_cards[i])  # this used to be deck.computer_cards but should be this maybe?
+    player_hand.append(deck.player_cards[i])
 
+# Remove first 5 cards from computer deck and player deck, because these cards are now in the active hands
 deck.computer_cards.pop(0)
 deck.computer_cards.pop(0)
 deck.computer_cards.pop(0)
@@ -168,23 +177,25 @@ deck.player_cards.pop(0)
 deck.player_cards.pop(0)
 deck.player_cards.pop(0)
 
-print(deck.wrkcard1.show())
-print(deck.wrkcard2.show())
+
 import time
+
+# Keeps display running
 running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
-# loop for game play
+# loop for computer game play
+    # Suji was the mastermind behind our uses of pygame.time
+    # Suji and Rhian combined to create this computer gameplay function
     def computer_gameplay():
         pygame.time.wait(3000)
         count = 0
         count_player = 0
-        displayStatus(deck, computer_hand)
-        #while len(computer_hand) > 0 and (count < len(computer_hand)):
-        for item in range(0,5):
+        #displayStatus(deck, computer_hand)
+        for item in range(0, 5):
             if len(computer_hand) > 0 and count < len(computer_hand):
                 item = computer_hand[count]
                 count = count + 1
@@ -192,34 +203,38 @@ while running:
                 if (item.value == (deck.wrkcard1.value + 1)) or (item.value == (deck.wrkcard1.value - 1)) or (item.value == 13 and (deck.wrkcard1.value == 1)) or (item.value == 1 and (deck.wrkcard1.value == 13)):
                     deck.standby1.append(deck.wrkcard1)  # keeps deck.wrkcard1 at holding one thing
                     deck.wrkcard1 = item
+
+                    # Update the display of wrkcard1
                     wrkcard1_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard1.getstr() + '.png')
                     wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
                     pygame.display.update()
+
+                    #computer_hand loses a card to the middle
                     computer_hand.pop(count-1)
                     if len(deck.computer_cards) > 0:
-                        computer_hand.append(deck.computer_cards[0])
-                        deck.computer_cards.pop(0)
+                        computer_hand.append(deck.computer_cards[0]) # Draws card from deck after it has played a card to the middle
+                        deck.computer_cards.pop(0) # Deck loses a card (now in active hand)
                         count = 0
                     else:
                         count = 0
-                    print('Replace working card 1')
-                    displayStatus(deck, computer_hand)
+                    #displayStatus(deck, computer_hand)
                     break
                 elif (item.value == (deck.wrkcard2.value + 1)) or (item.value == (deck.wrkcard2.value - 1)) or (item.value == 13 and (deck.wrkcard2.value == 1)) or (item.value == 1 and (deck.wrkcard2.value == 13)):
                     deck.standby2.append(deck.wrkcard2)
                     deck.wrkcard2 = item
+
+                    # Update the display of wrkcard2
                     wrkcard2_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard2.getstr() + '.png')
                     wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
                     pygame.display.update()
                     computer_hand.pop(count-1)
                     if len(deck.computer_cards) > 0:
-                        computer_hand.append(deck.computer_cards[0])
-                        deck.computer_cards.pop(0)
+                        computer_hand.append(deck.computer_cards[0]) # Draws card from deck after it has played a card to the middle
+                        deck.computer_cards.pop(0) # Deck loses a card (now in active hand)
                         count = 0
                     else:
                         count = 0
-                    print('Replace working card 2')
-                    displayStatus(deck, computer_hand)
+                    #displayStatus(deck, computer_hand)
                     break
                 elif count == length_comp:
                     count = 0
@@ -232,15 +247,16 @@ while running:
         pygame.quit()
         quit()
 
-
+    # Code for player gameplay using keypresses
+    # All 3 of us worked together on the player gameplay
+    # Jacques did some pseudocode for this, Rhian wrote the original code, and Suji debugged/tested
     def player_gameplay():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 quit_game()
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_1:
-                    print("number one")
-                    print(player_hand[0].value)
+                if event.key == pygame.K_1:  # If "1" pressed, check if that is a valid card to play
+                    # If it can be played on wrkcard 1, do this
                     if (player_hand[0].value == (deck.wrkcard1.value + 1)) or (player_hand[0].value == (deck.wrkcard1.value - 1)) or (player_hand[0].value == 13 and (deck.wrkcard1.value == 1)) or (player_hand[0].value == 1 and (deck.wrkcard1.value == 13)):
                         deck.standby1.append(deck.wrkcard1)
                         deck.wrkcard1 = player_hand[0]
@@ -250,6 +266,7 @@ while running:
                             deck.player_cards.pop(0)
 
                         break
+                    # If it can be played on wrkcard 2, do this
                     elif (player_hand[0].value == (deck.wrkcard2.value + 1)) or (player_hand[0].value == (deck.wrkcard2.value - 1)) or (player_hand[0].value == 13 and (deck.wrkcard2.value == 1)) or (player_hand[0].value == 1 and (deck.wrkcard2.value == 13)):
                         deck.standby2.append(deck.wrkcard2)
                         deck.wrkcard2 = player_hand[0]
@@ -261,8 +278,9 @@ while running:
                         break
                     else:
                         print('Error - this card cannot be played')
+                # If "2" is pressed
                 elif event.key == pygame.K_2:
-                    print("number 2")
+                    # Check if card can be played on wrkcard1
                     if (player_hand[1].value == (deck.wrkcard1.value + 1)) or (player_hand[1].value == (deck.wrkcard1.value - 1)) or (player_hand[1].value == 13 and (deck.wrkcard1.value == 1)) or (player_hand[1].value == 1 and (deck.wrkcard1.value == 13)):
                         deck.standby1.append(deck.wrkcard1)
                         deck.wrkcard1 = player_hand[1]
@@ -272,6 +290,7 @@ while running:
                             deck.player_cards.pop(0)
 
                         break
+                    # Check if card can be played on wrkcard2
                     elif (player_hand[1].value == (deck.wrkcard2.value + 1)) or (player_hand[1].value == (deck.wrkcard2.value - 1)) or (player_hand[1].value == 13 and (deck.wrkcard2.value == 1)) or (player_hand[1].value == 1 and (deck.wrkcard2.value == 13)):
                         deck.standby2.append(deck.wrkcard2)
                         deck.wrkcard2 = player_hand[1]
@@ -283,8 +302,9 @@ while running:
                         break
                     else:
                         print('Error - this card cannot be played')
+                # If "3" pressed
                 elif event.key == pygame.K_3:
-                    print("number 3")
+                    # Check if card can be played on wrkcard1
                     if (player_hand[2].value == (deck.wrkcard1.value + 1)) or (player_hand[2].value == (deck.wrkcard1.value - 1)) or (player_hand[2].value == 13 and (deck.wrkcard1.value == 1)) or (player_hand[2].value == 1 and (deck.wrkcard1.value == 13)):
                         deck.standby1.append(deck.wrkcard1)
                         deck.wrkcard1 = player_hand[2]
@@ -294,6 +314,7 @@ while running:
                             deck.player_cards.pop(0)
 
                         break
+                    # Check if card can be played on wrkcard2
                     elif (player_hand[2].value == (deck.wrkcard2.value + 1)) or (player_hand[2].value == (deck.wrkcard2.value - 1)) or (player_hand[2].value == 13 and (deck.wrkcard2.value == 1)) or (player_hand[2].value == 1 and (deck.wrkcard2.value == 13)):
                         deck.standby2.append(deck.wrkcard2)
                         deck.wrkcard2 = player_hand[2]
@@ -305,8 +326,9 @@ while running:
                         break
                     else:
                         print('Error - this card cannot be played')
+                # If "4" pressed
                 elif event.key == pygame.K_4:
-                    print("number 4")
+                    # Check if card can be played on wrkcard1
                     if (player_hand[3].value == (deck.wrkcard1.value + 1)) or (player_hand[3].value == (deck.wrkcard1.value - 1)) or (player_hand[3].value == 13 and (deck.wrkcard1.value == 1)) or (player_hand[3].value == 1 and (deck.wrkcard1.value == 13)):
                         deck.standby1.append(deck.wrkcard1)
                         deck.wrkcard1 = player_hand[3]
@@ -316,6 +338,7 @@ while running:
                             deck.player_cards.pop(0)
 
                         break
+                    # Check if card can be played on wrkcard2
                     elif (player_hand[3].value == (deck.wrkcard2.value + 1)) or (player_hand[3].value == (deck.wrkcard2.value - 1)) or (player_hand[3].value == 13 and (deck.wrkcard2.value == 1)) or (player_hand[3].value == 1 and (deck.wrkcard2.value == 13)):
                         deck.standby2.append(deck.wrkcard2)
                         deck.wrkcard2 = player_hand[3]
@@ -327,8 +350,9 @@ while running:
                         break
                     else:
                         print('Error - this card cannot be played')
+                # If "5" is pressed
                 elif event.key == pygame.K_5:
-                    print("number 5")
+                    # Check to see if this card works on wrkcard1
                     if (player_hand[4].value == (deck.wrkcard1.value + 1)) or (player_hand[4].value == (deck.wrkcard1.value - 1)) or (player_hand[4].value == 13 and (deck.wrkcard1.value == 1)) or (player_hand[4].value == 1 and (deck.wrkcard1.value == 13)):
                         deck.standby1.append(deck.wrkcard1)
                         deck.wrkcard1 = player_hand[4]
@@ -337,6 +361,7 @@ while running:
                             player_hand.append(deck.player_cards[0])
                             deck.player_cards.pop(0)
                         break
+                    # Check to see if this card works on wrkcard2
                     elif (player_hand[4].value == (deck.wrkcard2.value + 1)) or (player_hand[4].value == (deck.wrkcard2.value - 1)) or (player_hand[4].value == 13 and (deck.wrkcard2.value == 1)) or (player_hand[4].value == 1 and (deck.wrkcard2.value == 13)):
                         deck.standby2.append(deck.wrkcard2)
                         deck.wrkcard2 = player_hand[4]
@@ -347,12 +372,12 @@ while running:
                         break
                     else:
                         print('Error - this card cannot be played')
+                # If "6" is pressed
                 elif event.key == pygame.K_6:
-                    print("number 6")
+                    # If 6 is pressed, flip over the top card of each standby deck, and assign new working cards
                     deck.wrkcard1 = deck.standby1[0]
                     card = deck.standby1.pop(0)
                     deck.standby1.append(card)
-                    print('Flip')
                     deck.wrkcard2 = deck.standby2[0]
                     card = deck.standby2.pop(0)
                     deck.standby2.append(card)
@@ -363,13 +388,16 @@ while running:
     game_over = False
     while not game_over:
 
+        # Jacques did most of the image re-uploading within this while loop
+        # If player only has 4 cards left
         if len(player_hand) == 4:
             screen.fill(gray)
+            # Re-upload working card pics now that they might be different cards
             wrkcard1_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard1.getstr() + '.png')
             wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
             wrkcard2_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard2.getstr() + '.png')
             wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
-
+            # Re-upload pics of player's hand
             player_hand_pic1 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[0].getstr() + '.png')
             player_hand_pic1 = pygame.transform.scale(player_hand_pic1, (100, 150))
             player_hand_pic2 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[1].getstr() + '.png')
@@ -388,15 +416,15 @@ while running:
             screen.blit(back_of_card, (120, 250))  # standby deck 1
             screen.blit(back_of_card, (780, 250))  # standby deck 2
             pygame.display.update()
-
-
+        # If player only has 3 cards left
         elif len(player_hand) == 3:
             screen.fill(gray)
+            # Re-upload working card pics
             wrkcard1_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard1.getstr() + '.png')
             wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
             wrkcard2_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard2.getstr() + '.png')
             wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
-
+            # Re-upload player hand pics
             player_hand_pic1 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[0].getstr() + '.png')
             player_hand_pic1 = pygame.transform.scale(player_hand_pic1, (100, 150))
             player_hand_pic2 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[1].getstr() + '.png')
@@ -412,15 +440,15 @@ while running:
             screen.blit(back_of_card, (120, 250))  # standby deck 1
             screen.blit(back_of_card, (780, 250))  # standby deck 2
             pygame.display.update()
-
-
+        # If player only has 2 cards left
         elif len(player_hand) == 2:
             screen.fill(gray)
+            #Re-Upload working card pics
             wrkcard1_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard1.getstr() + '.png')
             wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
             wrkcard2_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard2.getstr() + '.png')
             wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
-
+            # Re-Upload player hand pics
             player_hand_pic1 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[0].getstr() + '.png')
             player_hand_pic1 = pygame.transform.scale(player_hand_pic1, (100, 150))
             player_hand_pic2 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[1].getstr() + '.png')
@@ -433,14 +461,15 @@ while running:
             screen.blit(back_of_card, (120, 250))  # standby deck 1
             screen.blit(back_of_card, (780, 250))  # standby deck 2
             pygame.display.update()
-
+        # If player only has 1 card left
         elif len(player_hand) == 1:
             screen.fill(gray)
+            # Re-Upload working card pics
             wrkcard1_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard1.getstr() + '.png')
             wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
             wrkcard2_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard2.getstr() + '.png')
             wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
-
+            #Re-Upload player hand pics
             player_hand_pic1 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[0].getstr() + '.png')
             player_hand_pic1 = pygame.transform.scale(player_hand_pic1, (100, 150))
             screen.blit(player_hand_pic1, (200, 550))
@@ -450,15 +479,15 @@ while running:
             screen.blit(back_of_card, (120, 250))  # standby deck 1
             screen.blit(back_of_card, (780, 250))  # standby deck 2
             pygame.display.update()
-
-
+        # If player has more than 4 cards in hand
         elif len(player_hand) > 4:
             screen.fill(gray)
+            # Re-upload working card pics
             wrkcard1_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard1.getstr() + '.png')
             wrkcard1_pic = pygame.transform.scale(wrkcard1_pic, (100, 150))
             wrkcard2_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard2.getstr() + '.png')
             wrkcard2_pic = pygame.transform.scale(wrkcard2_pic, (100, 150))
-
+            # Re-upload player hand pics
             player_hand_pic1 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[0].getstr() + '.png')
             player_hand_pic1 = pygame.transform.scale(player_hand_pic1, (100, 150))
             player_hand_pic2 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[1].getstr() + '.png')
@@ -470,14 +499,14 @@ while running:
             player_hand_pic5 = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + player_hand[4].getstr() + '.png')
             player_hand_pic5 = pygame.transform.scale(player_hand_pic5, (100, 150))
 
-            # Load images of player hand
+            # Show images of player hand
             screen.blit(player_hand_pic1, (200, 550))
             screen.blit(player_hand_pic2, (330, 550))
             screen.blit(player_hand_pic3, (460, 550))
             screen.blit(player_hand_pic4, (590, 550))
             screen.blit(player_hand_pic5, (720, 550))
 
-        # Load images of working cards and standby decks
+        # Show images of working cards and standby decks
             screen.blit(wrkcard1_pic, (375, 250))  # working card 1
             screen.blit(wrkcard2_pic, (525, 250))  # working card 2
             screen.blit(back_of_card, (120, 250))  # standby deck 1
@@ -487,6 +516,8 @@ while running:
         computer_gameplay()
         player_gameplay()
 
+        # If the computer has run out of cards, they win
+        # Suji/Rhian combined to come up with the terms of end of the game
         if len(deck.computer_cards) == 0 and len(computer_hand) == 0:
             print('Computer has won the game!')
             screen.fill(gray)
@@ -497,6 +528,7 @@ while running:
             pygame.time.wait(5000)
             game_over = True
             running = False
+        # If the player has run out of cards, they win
         elif len(deck.player_cards) == 0 and len(player_hand) == 0:
             screen.fill(gray)
             player_win = pygame.image.load('./Playing Cards/PNG-cards-1.3/player_win.jpeg_win.jpeg')
@@ -504,6 +536,7 @@ while running:
             screen.blit(player_win, (250, 150))
             pygame.display.update()
             pygame.time.wait(5000)
+            # Quits out of while loops
             game_over = True
             running = False
         else:
