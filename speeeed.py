@@ -389,6 +389,7 @@ while running:
             screen.blit(back_of_card, (780, 250))  # standby deck 2
             pygame.display.update()
 
+
         elif len(player_hand) == 3:
             screen.fill(gray)
             wrkcard1_pic = pygame.image.load('./Playing Cards/PNG-cards-1.3/' + deck.wrkcard1.getstr() + '.png')
@@ -411,6 +412,7 @@ while running:
             screen.blit(back_of_card, (120, 250))  # standby deck 1
             screen.blit(back_of_card, (780, 250))  # standby deck 2
             pygame.display.update()
+
 
         elif len(player_hand) == 2:
             screen.fill(gray)
@@ -448,6 +450,7 @@ while running:
             screen.blit(back_of_card, (120, 250))  # standby deck 1
             screen.blit(back_of_card, (780, 250))  # standby deck 2
             pygame.display.update()
+
 
         elif len(player_hand) > 4:
             screen.fill(gray)
@@ -487,13 +490,21 @@ while running:
         if len(deck.computer_cards) == 0 and len(computer_hand) == 0:
             print('Computer has won the game!')
             screen.fill(gray)
+            computer_win = pygame.image.load('./Playing Cards/PNG-cards-1.3/computer_win.jpeg')
+            computer_win = pygame.transform.scale(computer_win, (500, 500))
+            screen.blit(computer_win, (250, 150))
             pygame.display.update()
             pygame.time.wait(5000)
             game_over = True
             running = False
         elif len(deck.player_cards) == 0 and len(player_hand) == 0:
+            screen.fill(gray)
+            player_win = pygame.image.load('./Playing Cards/PNG-cards-1.3/player_win.jpeg_win.jpeg')
+            player_win = pygame.transform.scale(player_win, (500, 500))
+            screen.blit(player_win, (250, 150))
+            pygame.display.update()
+            pygame.time.wait(5000)
             game_over = True
             running = False
         else:
             game_over = False
-##
